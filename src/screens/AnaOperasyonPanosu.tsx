@@ -88,7 +88,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
               </div>
             </div>
             <div className="flex-1 flex flex-col gap-xs overflow-y-auto">
-              <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest">
+              <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest">
                 <span className="material-symbols-outlined">dashboard</span>
                 Panorama
               </button>
@@ -139,7 +139,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
           YENİ OTURUM
         </button>
         <div className="flex-1 flex flex-col gap-xs overflow-y-auto">
-          <button onClick={() => onNavigate("dashboard")} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
+          <button onClick={() => onNavigate("dashboard")} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
             <span className="material-symbols-outlined">dashboard</span>
             Panorama
           </button>
@@ -313,7 +313,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                 <div className="p-sm flex flex-col gap-xs flex-1">
                   <div className="flex justify-between items-start border-b border-[#334155] pb-xs mb-xs">
                     <div>
-                      <h3 className="font-headline-md text-headline-md text-on-surface">{room.name}</h3>
+                      <h2 className="font-headline-md text-headline-md text-on-surface">{room.name}</h2>
                       <div className="flex items-center gap-xs text-outline font-body-sm text-body-sm mt-[2px]">
                         <span className="material-symbols-outlined text-[14px]">group</span> {room.players.length} / {room.maxPlayers} Oyuncu
                       </div>
@@ -352,7 +352,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
       {showLogoutConfirm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
-            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <h2 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h2>
             <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
             <div className="flex gap-3">
               <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">

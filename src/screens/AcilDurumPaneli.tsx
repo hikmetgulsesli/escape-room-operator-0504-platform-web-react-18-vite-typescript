@@ -43,13 +43,13 @@ export function AcilDurumPaneli(props: AcilDurumPaneliProps) {
       <span className="text-lg font-black tracking-tighter text-blue-500 uppercase">KOMUTA MERKEZİ</span>
       </div>
       <div className="flex items-center gap-4">
-      <button disabled className="bg-red-500 text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider opacity-50 cursor-not-allowed">ACİL DURDUR</button>
+      <div className="bg-red-500 text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider opacity-50">ACİL DURDUR</div>
       </div>
       </header>
       {/* SideNavBar Structure */}
       <nav className="fixed left-0 top-0 h-full w-64 border-r border-slate-800 bg-slate-900/90 backdrop-blur-lg text-blue-500 dark:text-blue-400 font-inter text-xs font-medium uppercase tracking-widest shadow-2xl flex flex-col pt-16 pb-6 px-4">
       <div className="flex-1 space-y-2 mt-4">
-      <button disabled className="flex items-center gap-3 px-3 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 w-full text-left opacity-50 cursor-not-allowed"><span className="material-symbols-outlined">dashboard</span>Panorama</button>
+      <div className="flex items-center gap-3 px-3 py-2 rounded text-slate-500 w-full text-left opacity-50"><span className="material-symbols-outlined">dashboard</span>Panorama</div>
       </div>
       </nav>
       </div>

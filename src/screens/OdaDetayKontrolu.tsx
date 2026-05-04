@@ -93,7 +93,7 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             </div>
             <ul className="flex flex-col gap-2 flex-1">
               <li><button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">dashboard</span>Panorama</button></li>
-              <li><button onClick={() => { onNavigate("operations"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
+              <li><button onClick={() => { onNavigate("operations"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
               <li><button onClick={() => { onNavigate("logs"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">list_alt</span>Olay Günlüğü</button></li>
               <li><button onClick={() => { onNavigate("analytics"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
               <li><button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
@@ -186,7 +186,7 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
           </div>
           <ul className="flex flex-col gap-2 flex-1">
             <li><button onClick={() => onNavigate("dashboard")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">dashboard</span>Panorama</button></li>
-            <li><button onClick={() => onNavigate("operations")} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
+            <li><button onClick={() => onNavigate("operations")} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
             <li><button onClick={() => onNavigate("logs")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">list_alt</span>Olay Günlüğü</button></li>
             <li><button onClick={() => onNavigate("analytics")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
             <li><button onClick={() => onNavigate("settings")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
@@ -253,10 +253,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Clue System */}
               <div className="glass-panel rounded-xl p-5 flex flex-col">
-                <h3 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                <h2 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary">lightbulb</span>
                   İpucu Gönderimi
-                </h3>
+                </h2>
                 <div className="space-y-3 mb-4">
                   {quickHints.map((h, i) => (
                     <button key={i} onClick={() => onSendHint(h)} className="w-full text-left bg-surface-container hover:bg-surface-variant border border-outline-variant p-3 rounded text-body-sm text-on-surface transition-colors flex justify-between items-center">
@@ -279,10 +279,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
               </div>
               {/* Puzzle Checklist */}
               <div className="glass-panel rounded-xl p-5 flex flex-col">
-                <h3 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                <h2 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
                   <span className="material-symbols-outlined text-tertiary">check_box</span>
                   Bulmaca Durumu
-                </h3>
+                </h2>
                 <div className="space-y-1 flex-1 overflow-y-auto pr-2">
                   {room.puzzles.map((puzzle) => (
                     <label key={puzzle.id} className="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
@@ -306,10 +306,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             {/* Player List */}
             <div className="glass-panel rounded-xl p-5">
               <div className="flex justify-between items-center border-b border-slate-700 pb-3 mb-4">
-                <h3 className="font-headline-md text-headline-md flex items-center gap-2">
+                <h2 className="font-headline-md text-headline-md flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary">group</span>
                   Oyuncular
-                </h3>
+                </h2>
                 <span className="bg-surface-container text-on-surface font-mono-data text-mono-data px-2 py-1 rounded">{room.players.length}/{room.maxPlayers}</span>
               </div>
               <ul className="space-y-2 mb-4">
@@ -341,10 +341,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             </div>
             {/* Event Log */}
             <div className="glass-panel rounded-xl p-5 flex-1 flex flex-col">
-              <h3 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+              <h2 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-outline">history</span>
                 Olay Günlüğü
-              </h3>
+              </h2>
               <div className="flex-1 overflow-y-auto space-y-4 pr-2 font-mono-data text-body-sm">
                 {roomLogs.length === 0 && (
                   <div className="text-center text-outline-variant py-4">Kayıt bulunmamaktadır.</div>
@@ -361,10 +361,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             </div>
             {/* Inventory / Objects */}
             <div className="glass-panel rounded-xl p-5">
-              <h3 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+              <h2 className="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-tertiary-container">inventory_2</span>
                 Oda Envanteri
-              </h3>
+              </h2>
               <div className="grid grid-cols-2 gap-3">
                 {room.inventory.map((item) => (
                   <div key={item.id} className={`bg-surface-container border rounded p-3 flex flex-col items-center justify-center text-center gap-2 ${item.active ? "border-primary shadow-[0_0_10px_rgba(77,142,255,0.1)]" : "border-outline-variant opacity-50"}`}>
@@ -385,7 +385,7 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
       {showLogoutConfirm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
-            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <h2 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h2>
             <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
             <div className="flex gap-3">
               <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
