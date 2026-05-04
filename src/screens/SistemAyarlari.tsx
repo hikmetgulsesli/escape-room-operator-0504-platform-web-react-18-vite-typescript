@@ -83,7 +83,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm md:hidden" onClick={() => setMobileMenuOpen(false)}>
           <nav className="absolute left-0 top-0 h-full w-64 bg-slate-900/95 backdrop-blur-lg border-r border-slate-800 shadow-2xl flex flex-col pt-16 pb-6 px-4" onClick={(e) => e.stopPropagation()}>
             <div className="mb-8 px-4">
-              <h1 className="text-xl font-bold text-slate-100 mb-1">Alpha Sektör</h1>
+              <p className="text-xl font-bold text-slate-100 mb-1">Alpha Sektör</p>
               <p className="text-slate-400 text-[10px]">Baş Operatör</p>
             </div>
             <div className="flex-1 space-y-2">
@@ -91,7 +91,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
               <button onClick={() => { onNavigate("operations"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">precision_manufacturing</span><span>Operasyonlar</span></button>
               <button onClick={() => { onNavigate("logs"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">list_alt</span><span>Olay Günlüğü</span></button>
               <button onClick={() => { onNavigate("analytics"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">analytics</span><span>Analizler</span></button>
-              <button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg" style={{fontVariationSettings: "'FILL' 1"}}>settings_input_component</span><span>Sistem Ayarları</span></button>
+              <button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg" style={{fontVariationSettings: "'FILL' 1"}}>settings_input_component</span><span>Sistem Ayarları</span></button>
             </div>
             <div className="mt-auto space-y-2">
               <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
@@ -105,7 +105,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
       {/* SideNavBar (Hidden on Mobile) */}
       <nav className="hidden md:flex bg-slate-900/90 backdrop-blur-lg text-blue-500 dark:text-blue-400 font-inter text-xs font-medium uppercase tracking-widest fixed left-0 top-0 h-full w-64 border-r border-slate-800 shadow-2xl flex-col pt-16 pb-6 px-4 z-40 transition-all duration-200 ease-in-out">
         <div className="mb-8 px-4">
-          <h1 className="text-xl font-bold text-slate-100 mb-1">Alpha Sektör</h1>
+          <p className="text-xl font-bold text-slate-100 mb-1">Alpha Sektör</p>
           <p className="text-slate-400 text-[10px]">Baş Operatör</p>
         </div>
         <div className="flex-1 space-y-2">
@@ -113,7 +113,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
           <button onClick={() => onNavigate("operations")} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">precision_manufacturing</span><span>Operasyonlar</span></button>
           <button onClick={() => onNavigate("logs")} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">list_alt</span><span>Olay Günlüğü</span></button>
           <button onClick={() => onNavigate("analytics")} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">analytics</span><span>Analizler</span></button>
-          <button onClick={() => onNavigate("settings")} className="flex items-center space-x-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg" style={{fontVariationSettings: "'FILL' 1"}}>settings_input_component</span><span>Sistem Ayarları</span></button>
+          <button onClick={() => onNavigate("settings")} className="flex items-center space-x-3 px-4 py-3 rounded bg-blue-600/30 text-white border-r-2 border-blue-500 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg" style={{fontVariationSettings: "'FILL' 1"}}>settings_input_component</span><span>Sistem Ayarları</span></button>
         </div>
         <div className="mt-auto space-y-2">
           <button onClick={() => onNavigate("dashboard")} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
@@ -191,7 +191,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
       {/* Main Canvas */}
       <main className="flex-1 mt-14 md:ml-64 p-gutter max-w-7xl mx-auto w-full">
         <div className="mb-xl">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm">Sistem Ayarları</h2>
+          <h1 className="font-headline-lg text-headline-lg text-on-surface mb-sm">Sistem Ayarları</h1>
           <p className="font-body-base text-body-base text-on-surface-variant">Operasyon merkezi yapılandırması ve veri yönetimi kontrolleri.</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-lg">
@@ -201,7 +201,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <section className="bg-surface-container/80 backdrop-blur-md rounded-xl border border-outline-variant/50 overflow-hidden shadow-lg">
               <div className="p-md border-b border-outline-variant/50 flex items-center space-x-3 bg-surface-container-high/50">
                 <span className="material-symbols-outlined text-primary">tune</span>
-                <h3 className="font-headline-md text-headline-md text-on-surface">Genel Ayarlar</h3>
+                <h2 className="font-headline-md text-headline-md text-on-surface">Genel Ayarlar</h2>
               </div>
               <div className="p-lg space-y-md">
                 {/* Setting Row 1 */}
@@ -209,7 +209,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                   <div className="flex items-start space-x-4">
                     <span className="material-symbols-outlined text-on-surface-variant mt-1">notifications_active</span>
                     <div>
-                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Kritik Uyarı Sesleri</h4>
+                      <h3 className="font-body-base text-body-base font-medium text-on-surface">Kritik Uyarı Sesleri</h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">Acil durum ve zaman aşımlarında sesli bildirim.</p>
                     </div>
                   </div>
@@ -224,7 +224,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                   <div className="flex items-start space-x-4">
                     <span className="material-symbols-outlined text-on-surface-variant mt-1">notifications</span>
                     <div>
-                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Bildirimler</h4>
+                      <h3 className="font-body-base text-body-base font-medium text-on-surface">Bildirimler</h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">Olay günlüğü ve sistem bildirimlerini göster.</p>
                     </div>
                   </div>
@@ -239,7 +239,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                   <div className="flex items-start space-x-4">
                     <span className="material-symbols-outlined text-on-surface-variant mt-1">backup</span>
                     <div>
-                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Otomatik Yedekleme</h4>
+                      <h3 className="font-body-base text-body-base font-medium text-on-surface">Otomatik Yedekleme</h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">Her oturum sonunda veriyi otomatik dışa aktar.</p>
                     </div>
                   </div>
@@ -254,7 +254,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                   <div className="flex items-start space-x-4">
                     <span className="material-symbols-outlined text-on-surface-variant mt-1">dark_mode</span>
                     <div>
-                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Karanlık Mod (Zorunlu)</h4>
+                      <h3 className="font-body-base text-body-base font-medium text-on-surface">Karanlık Mod (Zorunlu)</h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">Komuta merkezi standart yüksek kontrast görünümü.</p>
                     </div>
                   </div>
@@ -269,14 +269,14 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <section className="bg-surface-container/80 backdrop-blur-md rounded-xl border border-outline-variant/50 overflow-hidden shadow-lg">
               <div className="p-md border-b border-outline-variant/50 flex items-center space-x-3 bg-surface-container-high/50">
                 <span className="material-symbols-outlined text-primary">badge</span>
-                <h3 className="font-headline-md text-headline-md text-on-surface">Operatör Profili ve Hesap</h3>
+                <h2 className="font-headline-md text-headline-md text-on-surface">Operatör Profili ve Hesap</h2>
               </div>
               <div className="p-lg space-y-md">
                 {/* Avatar & Account Stats */}
                 <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-sm rounded-lg bg-surface-container-high/20">
                   <img alt="Operatör Profili" className="w-16 h-16 rounded-full border-2 border-primary/30 object-cover" src={settings.avatarUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuCY6ZM0cKIXJ8pEwsyAiMN76PC_GmBIhCAUvZ2jvALBsRb7KH7m3GxIV7xXE1piPZJcZct59rsqEHK9FwEE6k6dNX4-Vy7ROLxBNgAU51WdTWQBNF_oufU3zYRpK7a2OQ9qeAp8WMp8_9a38xdDLITVUjgE1J7nYHA7hkrhZd_ey4B8K3o7GgxNhs1nyXOSwnIquvLateFbzccGqzl3kiab25UqsDrxoagqAK8XgM0ovp7guGOG8z4yrsxzgMc2UyvBxteSVTJIbq0"} />
                   <div className="flex-1">
-                    <h4 className="font-headline-md text-headline-md text-on-surface">{settings.operatorName}</h4>
+                    <h3 className="font-headline-md text-headline-md text-on-surface">{settings.operatorName}</h3>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">{settings.accessLevel}</p>
                     <div className="flex flex-wrap gap-3 mt-2 text-xs text-on-surface-variant">
                       <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">calendar_today</span>Katılım: {accountStats.joinDate}</span>
@@ -403,14 +403,14 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <section className="bg-surface-container/80 backdrop-blur-md rounded-xl border border-outline-variant/50 overflow-hidden shadow-lg h-full flex flex-col">
               <div className="p-md border-b border-outline-variant/50 flex items-center space-x-3 bg-surface-container-high/50">
                 <span className="material-symbols-outlined text-tertiary">database</span>
-                <h3 className="font-headline-md text-headline-md text-on-surface">Veri Yönetimi</h3>
+                <h2 className="font-headline-md text-headline-md text-on-surface">Veri Yönetimi</h2>
               </div>
               <div className="p-lg space-y-6 flex-1">
                 {/* Local Storage */}
                 <div className="p-md border border-outline-variant/50 rounded-lg bg-surface-container-low/50">
                   <div className="flex items-center space-x-2 mb-2">
                     <span className="material-symbols-outlined text-on-surface-variant text-sm">cleaning_services</span>
-                    <h4 className="font-body-base text-body-base font-medium text-on-surface">Önbellek Temizliği</h4>
+                    <h3 className="font-body-base text-body-base font-medium text-on-surface">Önbellek Temizliği</h3>
                   </div>
                   <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">Yerel tarayıcı verilerini (LocalStorage) temizler. Aktif oturumlar kapanabilir.</p>
                   <button onClick={onClearStorage} className="w-full bg-transparent border border-outline-variant text-on-surface hover:border-outline hover:bg-surface-container-highest font-body-base text-body-sm py-2 rounded transition-colors">
@@ -419,7 +419,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                 </div>
                 {/* Export/Import */}
                 <div className="space-y-3">
-                  <h4 className="font-label-caps text-label-caps text-on-surface-variant">SİSTEM YEDEKLEME</h4>
+                  <h3 className="font-label-caps text-label-caps text-on-surface-variant">SİSTEM YEDEKLEME</h3>
                   <button onClick={onExport} className="w-full flex items-center justify-center space-x-2 bg-surface-variant hover:bg-surface-bright text-on-surface font-body-base text-body-base py-3 rounded-lg transition-colors border border-outline-variant">
                     <span className="material-symbols-outlined text-sm">download</span>
                     <span>Veriyi Dışa Aktar (Export)</span>
@@ -441,7 +441,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                 <div className="flex items-start space-x-3 mb-3">
                   <span className="material-symbols-outlined text-error mt-0.5">warning</span>
                   <div>
-                    <h4 className="font-body-base text-body-base font-medium text-error">Tehlikeli Bölge</h4>
+                    <h3 className="font-body-base text-body-base font-medium text-error">Tehlikeli Bölge</h3>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Sistemi sıfırlamak tüm kayıtları kalıcı olarak siler.</p>
                   </div>
                 </div>
@@ -472,7 +472,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
       {showLogoutConfirm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
-            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <h2 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h2>
             <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
             <div className="flex gap-3">
               <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
