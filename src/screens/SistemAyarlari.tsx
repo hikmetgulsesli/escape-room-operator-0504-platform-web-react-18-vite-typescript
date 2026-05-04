@@ -35,11 +35,46 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [importText, setImportText] = useState("");
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [showPasswordSection, setShowPasswordSection] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  const handleSave = () => {
+    onUpdateSettings({});
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 2000);
+    if (password) {
+      setPassword("");
+      setConfirmPassword("");
+      setShowPasswordSection(false);
+      setPasswordError("");
+    }
+  };
+
+  const handlePasswordChange = () => {
+    if (password && password !== confirmPassword) {
+      setPasswordError("Şifreler eşleşmiyor!");
+      return;
+    }
+    if (password && password.length < 6) {
+      setPasswordError("Şifre en az 6 karakter olmalıdır.");
+      return;
+    }
+    setPasswordError("");
+    handleSave();
+  };
+
+  const accountStats = {
+    joinDate: "2023-01-15",
+    sessionsManaged: 1247,
+    lastActive: new Date().toLocaleDateString("tr-TR"),
+  };
 
   return (
     <>
@@ -187,6 +222,36 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                 {/* Setting Row 2 */}
                 <div className="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high/30 transition-colors">
                   <div className="flex items-start space-x-4">
+                    <span className="material-symbols-outlined text-on-surface-variant mt-1">notifications</span>
+                    <div>
+                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Bildirimler</h4>
+                      <p className="font-body-sm text-body-sm text-on-surface-variant">Olay günlüğü ve sistem bildirimlerini göster.</p>
+                    </div>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input checked={settings.notificationsEnabled} onChange={(e) => onUpdateSettings({ notificationsEnabled: e.target.checked })} className="sr-only peer" type="checkbox" />
+                    <div className="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:border-outline after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  </label>
+                </div>
+                <hr className="border-outline-variant/30" />
+                {/* Setting Row 3 */}
+                <div className="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high/30 transition-colors">
+                  <div className="flex items-start space-x-4">
+                    <span className="material-symbols-outlined text-on-surface-variant mt-1">backup</span>
+                    <div>
+                      <h4 className="font-body-base text-body-base font-medium text-on-surface">Otomatik Yedekleme</h4>
+                      <p className="font-body-sm text-body-sm text-on-surface-variant">Her oturum sonunda veriyi otomatik dışa aktar.</p>
+                    </div>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input checked={settings.autoBackup} onChange={(e) => onUpdateSettings({ autoBackup: e.target.checked })} className="sr-only peer" type="checkbox" />
+                    <div className="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:border-outline after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  </label>
+                </div>
+                <hr className="border-outline-variant/30" />
+                {/* Setting Row 4 */}
+                <div className="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high/30 transition-colors">
+                  <div className="flex items-start space-x-4">
                     <span className="material-symbols-outlined text-on-surface-variant mt-1">dark_mode</span>
                     <div>
                       <h4 className="font-body-base text-body-base font-medium text-on-surface">Karanlık Mod (Zorunlu)</h4>
@@ -204,39 +269,131 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <section className="bg-surface-container/80 backdrop-blur-md rounded-xl border border-outline-variant/50 overflow-hidden shadow-lg">
               <div className="p-md border-b border-outline-variant/50 flex items-center space-x-3 bg-surface-container-high/50">
                 <span className="material-symbols-outlined text-primary">badge</span>
-                <h3 className="font-headline-md text-headline-md text-on-surface">Operatör Profili</h3>
+                <h3 className="font-headline-md text-headline-md text-on-surface">Operatör Profili ve Hesap</h3>
               </div>
-              <div className="p-lg grid grid-cols-1 md:grid-cols-2 gap-md">
-                <div className="space-y-2">
-                  <label className="font-label-caps text-label-caps text-on-surface-variant">GÖREV TANIYICI (AD)</label>
-                  <input
-                    className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner"
-                    type="text"
-                    value={settings.operatorName}
-                    onChange={(e) => onUpdateSettings({ operatorName: e.target.value })}
-                  />
+              <div className="p-lg space-y-md">
+                {/* Avatar & Account Stats */}
+                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-sm rounded-lg bg-surface-container-high/20">
+                  <img alt="Operatör Profili" className="w-16 h-16 rounded-full border-2 border-primary/30 object-cover" src={settings.avatarUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuCY6ZM0cKIXJ8pEwsyAiMN76PC_GmBIhCAUvZ2jvALBsRb7KH7m3GxIV7xXE1piPZJcZct59rsqEHK9FwEE6k6dNX4-Vy7ROLxBNgAU51WdTWQBNF_oufU3zYRpK7a2OQ9qeAp8WMp8_9a38xdDLITVUjgE1J7nYHA7hkrhZd_ey4B8K3o7GgxNhs1nyXOSwnIquvLateFbzccGqzl3kiab25UqsDrxoagqAK8XgM0ovp7guGOG8z4yrsxzgMc2UyvBxteSVTJIbq0"} />
+                  <div className="flex-1">
+                    <h4 className="font-headline-md text-headline-md text-on-surface">{settings.operatorName}</h4>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">{settings.accessLevel}</p>
+                    <div className="flex flex-wrap gap-3 mt-2 text-xs text-on-surface-variant">
+                      <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">calendar_today</span>Katılım: {accountStats.joinDate}</span>
+                      <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">event_note</span>Oturum: {accountStats.sessionsManaged}</span>
+                      <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">schedule</span>Son Aktif: {accountStats.lastActive}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="font-label-caps text-label-caps text-on-surface-variant">ERİŞİM SEVİYESİ</label>
-                  <input className="w-full bg-surface-container-lowest border border-outline-variant/50 text-on-surface-variant font-mono-data text-mono-data rounded-lg px-4 py-2 cursor-not-allowed" disabled={true} type="text" value={settings.accessLevel} />
-                </div>
-                <div className="space-y-2 md:col-span-2 pt-sm">
-                  <label className="font-label-caps text-label-caps text-on-surface-variant">YENİ ŞİFRE BELİRLE</label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">lock</span>
+                <hr className="border-outline-variant/30" />
+                {/* Profile Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+                  <div className="space-y-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">GÖREV TANIYICI (AD)</label>
                     <input
-                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-mono-data text-mono-data rounded-lg pl-10 pr-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                      placeholder="••••••••"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner"
+                      type="text"
+                      value={settings.operatorName}
+                      onChange={(e) => onUpdateSettings({ operatorName: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">E-POSTA</label>
+                    <input
+                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner"
+                      type="email"
+                      value={settings.email}
+                      onChange={(e) => onUpdateSettings({ email: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">TELEFON</label>
+                    <input
+                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner"
+                      type="tel"
+                      value={settings.phone}
+                      onChange={(e) => onUpdateSettings({ phone: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">ERİŞİM SEVİYESİ</label>
+                    <input className="w-full bg-surface-container-lowest border border-outline-variant/50 text-on-surface-variant font-mono-data text-mono-data rounded-lg px-4 py-2 cursor-not-allowed" disabled={true} type="text" value={settings.accessLevel} />
+                  </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">PROFİL FOTOĞRAFI URL</label>
+                    <input
+                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner"
+                      type="url"
+                      value={settings.avatarUrl}
+                      onChange={(e) => onUpdateSettings({ avatarUrl: e.target.value })}
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label className="font-label-caps text-label-caps text-on-surface-variant">HAKKINDA / NOTLAR</label>
+                    <textarea
+                      className="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-inner resize-none h-20"
+                      value={settings.bio}
+                      onChange={(e) => onUpdateSettings({ bio: e.target.value })}
+                      placeholder="Kısa biyografi veya notlar..."
                     />
                   </div>
                 </div>
+                <hr className="border-outline-variant/30" />
+                {/* Password Section */}
+                <div className="space-y-2">
+                  <button onClick={() => setShowPasswordSection(!showPasswordSection)} className="flex items-center gap-2 text-primary font-body-base text-body-base hover:underline cursor-pointer">
+                    <span className="material-symbols-outlined text-sm">lock_reset</span>
+                    {showPasswordSection ? "Şifre Değiştirmeyi İptal Et" : "Şifre Değiştir"}
+                  </button>
+                  {showPasswordSection && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-md p-sm rounded-lg bg-surface-container-high/20">
+                      <div className="space-y-2">
+                        <label className="font-label-caps text-label-caps text-on-surface-variant">YENİ ŞİFRE</label>
+                        <div className="relative">
+                          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">lock</span>
+                          <input
+                            className="w-full bg-surface-dim border border-outline-variant text-on-surface font-mono-data text-mono-data rounded-lg pl-10 pr-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                            placeholder="••••••••"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="font-label-caps text-label-caps text-on-surface-variant">ŞİFREYİ DOĞRULA</label>
+                        <div className="relative">
+                          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">lock</span>
+                          <input
+                            className="w-full bg-surface-dim border border-outline-variant text-on-surface font-mono-data text-mono-data rounded-lg pl-10 pr-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                            placeholder="••••••••"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      {passwordError && (
+                        <div className="md:col-span-2 flex items-center gap-2 text-error font-body-sm text-body-sm">
+                          <span className="material-symbols-outlined text-sm">error</span>
+                          {passwordError}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="p-md bg-surface-container-low border-t border-outline-variant/50 flex justify-end">
-                <button onClick={() => { onUpdateSettings({}); if (password) { setPassword(""); } }} className="bg-primary text-on-primary font-body-base text-body-base font-semibold px-6 py-2 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(173,198,255,0.15)] flex items-center space-x-2">
+              <div className="p-md bg-surface-container-low border-t border-outline-variant/50 flex justify-end gap-3">
+                {saveSuccess && (
+                  <span className="flex items-center gap-1 text-tertiary font-body-sm text-body-sm">
+                    <span className="material-symbols-outlined text-sm">check_circle</span>
+                    Kaydedildi
+                  </span>
+                )}
+                <button onClick={handlePasswordChange} className="bg-primary text-on-primary font-body-base text-body-base font-semibold px-6 py-2 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(173,198,255,0.15)] flex items-center space-x-2">
                   <span className="material-symbols-outlined text-sm">save</span>
+                  <span>Değişiklikleri Kaydet</span>
                 </button>
               </div>
             </section>

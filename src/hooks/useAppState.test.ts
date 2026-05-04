@@ -192,7 +192,7 @@ describe("useAppState", () => {
       logFilterType: "all",
       emergencyActive: false,
       emergencyStartTime: null,
-      settings: { operatorName: "X", accessLevel: "Y", soundAlerts: false, darkMode: true },
+      settings: { operatorName: "X", accessLevel: "Y", soundAlerts: false, darkMode: true, email: "", phone: "", avatarUrl: "", bio: "", notificationsEnabled: true, autoBackup: false, language: "tr" },
     };
     mockLoadState.mockReturnValue(persisted);
     const { result } = renderHook(() => useAppState());

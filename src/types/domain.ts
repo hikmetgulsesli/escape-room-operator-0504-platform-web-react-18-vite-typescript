@@ -56,6 +56,13 @@ export interface AppSettings {
   accessLevel: string;
   soundAlerts: boolean;
   darkMode: boolean;
+  email: string;
+  phone: string;
+  avatarUrl: string;
+  bio: string;
+  notificationsEnabled: boolean;
+  autoBackup: boolean;
+  language: "tr" | "en";
 }
 
 export interface AppState {

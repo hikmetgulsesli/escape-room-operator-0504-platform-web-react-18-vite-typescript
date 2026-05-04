@@ -200,6 +200,13 @@ function createDefaultState(): AppState {
       accessLevel: "Seviye 4 - Baş Operatör",
       soundAlerts: true,
       darkMode: true,
+      email: "alpha@escape-room.local",
+      phone: "+90 555 123 4567",
+      avatarUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCY6ZM0cKIXJ8pEwsyAiMN76PC_GmBIhCAUvZ2jvALBsRb7KH7m3GxIV7xXE1piPZJcZct59rsqEHK9FwEE6k6dNX4-Vy7ROLxBNgAU51WdTWQBNF_oufU3zYRpK7a2OQ9qeAp8WMp8_9a38xdDLITVUjgE1J7nYHA7hkrhZd_ey4B8K3o7GgxNhs1nyXOSwnIquvLateFbzccGqzl3kiab25UqsDrxoagqAK8XgM0ovp7guGOG8z4yrsxzgMc2UyvBxteSVTJIbq0",
+      bio: "Kaçış odası operasyon merkezi baş operatörü. 5 yıllık deneyim.",
+      notificationsEnabled: true,
+      autoBackup: false,
+      language: "tr",
     },
   };
 }
