@@ -8,6 +8,13 @@ const mockSettings: AppSettings = {
   accessLevel: "Seviye 1",
   soundAlerts: true,
   darkMode: true,
+  email: "test@escape-room.local",
+  phone: "+90 555 999 8888",
+  avatarUrl: "",
+  bio: "Test operatör biyografisi.",
+  notificationsEnabled: true,
+  autoBackup: false,
+  language: "tr",
 };
 
 const defaultProps = {
@@ -99,9 +106,78 @@ describe("SistemAyarlari", () => {
     expect(defaultProps.onNavigate).toHaveBeenCalledWith("dashboard");
   });
 
+  it("updates email", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    const input = screen.getByDisplayValue("test@escape-room.local");
+    fireEvent.change(input, { target: { value: "yeni@email.com" } });
+    expect(defaultProps.onUpdateSettings).toHaveBeenCalledWith({ email: "yeni@email.com" });
+  });
+
+  it("updates phone", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    const input = screen.getByDisplayValue("+90 555 999 8888");
+    fireEvent.change(input, { target: { value: "+90 555 000 1111" } });
+    expect(defaultProps.onUpdateSettings).toHaveBeenCalledWith({ phone: "+90 555 000 1111" });
+  });
+
+  it("updates bio", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    const input = screen.getByDisplayValue("Test operatör biyografisi.");
+    fireEvent.change(input, { target: { value: "Yeni biyografi." } });
+    expect(defaultProps.onUpdateSettings).toHaveBeenCalledWith({ bio: "Yeni biyografi." });
+  });
+
+  it("toggles notifications setting", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    const checkboxes = screen.getAllByRole("checkbox");
+    fireEvent.click(checkboxes[1]);
+    expect(defaultProps.onUpdateSettings).toHaveBeenCalledWith({ notificationsEnabled: false });
+  });
+
+  it("toggles auto backup setting", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    const checkboxes = screen.getAllByRole("checkbox");
+    fireEvent.click(checkboxes[2]);
+    expect(defaultProps.onUpdateSettings).toHaveBeenCalledWith({ autoBackup: true });
+  });
+
+  it("toggles password section", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    fireEvent.click(screen.getByText("Şifre Değiştir"));
+    expect(screen.getByText("YENİ ŞİFRE")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Şifre Değiştirmeyi İptal Et"));
+    expect(screen.queryByText("YENİ ŞİFRE")).not.toBeInTheDocument();
+  });
+
+  it("shows password mismatch error", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    fireEvent.click(screen.getByText("Şifre Değiştir"));
+    const passwordInputs = screen.getAllByPlaceholderText("••••••••");
+    fireEvent.change(passwordInputs[0], { target: { value: "123456" } });
+    fireEvent.change(passwordInputs[1], { target: { value: "654321" } });
+    fireEvent.click(screen.getByText("Değişiklikleri Kaydet"));
+    expect(screen.getByText("Şifreler eşleşmiyor!")).toBeInTheDocument();
+  });
+
+  it("shows password length error", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    fireEvent.click(screen.getByText("Şifre Değiştir"));
+    const passwordInputs = screen.getAllByPlaceholderText("••••••••");
+    fireEvent.change(passwordInputs[0], { target: { value: "123" } });
+    fireEvent.change(passwordInputs[1], { target: { value: "123" } });
+    fireEvent.click(screen.getByText("Değişiklikleri Kaydet"));
+    expect(screen.getByText("Şifre en az 6 karakter olmalıdır.")).toBeInTheDocument();
+  });
+
+  it("saves settings successfully", () => {
+    render(<SistemAyarlari {...defaultProps} />);
+    fireEvent.click(screen.getByText("Değişiklikleri Kaydet"));
+    expect(screen.getByText("Kaydedildi")).toBeInTheDocument();
+  });
+
   it("opens notifications panel", () => {
     render(<SistemAyarlari {...defaultProps} />);
     fireEvent.click(screen.getByLabelText("Bildirimler"));
-    expect(screen.getByText(/Bildirimler/)).toBeInTheDocument();
+    expect(screen.getByText("Yeni sistem güncellemesi mevcut.")).toBeInTheDocument();
   });
 });
