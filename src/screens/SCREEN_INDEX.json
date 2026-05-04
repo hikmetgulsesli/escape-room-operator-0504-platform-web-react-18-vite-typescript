@@ -1,0 +1,47 @@
+[
+  {
+    "screenId": "6a5326b98b2c42948a52c54d25b066c2",
+    "title": "Acil Durum Paneli",
+    "componentName": "AcilDurumPaneli",
+    "file": "src/screens/AcilDurumPaneli.tsx",
+    "buttons": 4,
+    "inputs": 1,
+    "links": 1
+  },
+  {
+    "screenId": "4b2ac2d5e6c44c388391e8f4abfb3fde",
+    "title": "Sistem Ayarları",
+    "componentName": "SistemAyarlari",
+    "file": "src/screens/SistemAyarlari.tsx",
+    "buttons": 9,
+    "inputs": 6,
+    "links": 7
+  },
+  {
+    "screenId": "c68df0ba57a749ee8d33bca5f1c7ae94",
+    "title": "Olay Günlüğü",
+    "componentName": "OlayGunlugu",
+    "file": "src/screens/OlayGunlugu.tsx",
+    "buttons": 9,
+    "inputs": 2,
+    "links": 7
+  },
+  {
+    "screenId": "af660ec3c67d4e16bbc14c630831e249",
+    "title": "Oda Detay Kontrolü",
+    "componentName": "OdaDetayKontrolu",
+    "file": "src/screens/OdaDetayKontrolu.tsx",
+    "buttons": 17,
+    "inputs": 7,
+    "links": 7
+  },
+  {
+    "screenId": "fc7cf25933e94856ae410e2b66df4714",
+    "title": "Ana Operasyon Panosu",
+    "componentName": "AnaOperasyonPanosu",
+    "file": "src/screens/AnaOperasyonPanosu.tsx",
+    "buttons": 19,
+    "inputs": 1,
+    "links": 7
+  }
+]
