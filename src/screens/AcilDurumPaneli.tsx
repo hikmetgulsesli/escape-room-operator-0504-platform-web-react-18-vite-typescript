@@ -21,6 +21,8 @@ export function AcilDurumPaneli(props: AcilDurumPaneliProps) {
   const { active, startTime, onResolve, onNavigate } = props;
   const [safetyConfirmed, setSafetyConfirmed] = useState(false);
   const [note, setNote] = useState("");
+  const [sirensMuted, setSirensMuted] = useState(false);
+  const [locksOpened, setLocksOpened] = useState(false);
 
   if (!active) return null;
 
@@ -41,13 +43,13 @@ export function AcilDurumPaneli(props: AcilDurumPaneliProps) {
       <span className="text-lg font-black tracking-tighter text-blue-500 uppercase">KOMUTA MERKEZİ</span>
       </div>
       <div className="flex items-center gap-4">
-      <button className="bg-red-500 text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-slate-800/50 transition-colors">ACİL DURDUR</button>
+      <button disabled className="bg-red-500 text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider opacity-50 cursor-not-allowed">ACİL DURDUR</button>
       </div>
       </header>
       {/* SideNavBar Structure */}
       <nav className="fixed left-0 top-0 h-full w-64 border-r border-slate-800 bg-slate-900/90 backdrop-blur-lg text-blue-500 dark:text-blue-400 font-inter text-xs font-medium uppercase tracking-widest shadow-2xl flex flex-col pt-16 pb-6 px-4">
       <div className="flex-1 space-y-2 mt-4">
-      <button onClick={() => onNavigate("dashboard")} className="flex items-center gap-3 px-3 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 w-full text-left"><span className="material-symbols-outlined">dashboard</span>Panorama</button>
+      <button disabled className="flex items-center gap-3 px-3 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 w-full text-left opacity-50 cursor-not-allowed"><span className="material-symbols-outlined">dashboard</span>Panorama</button>
       </div>
       </nav>
       </div>
@@ -81,19 +83,19 @@ export function AcilDurumPaneli(props: AcilDurumPaneliProps) {
       <div className="space-y-4">
       <p className="font-label-caps text-on-surface-variant">SİMÜLASYON KONTROLLERİ</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <button className="flex items-center justify-between p-4 rounded border border-[#334155] bg-[#1E293B]/50 hover:bg-[#1E293B] text-on-surface transition-colors group">
+      <button onClick={() => setSirensMuted((v) => !v)} className="flex items-center justify-between p-4 rounded border border-[#334155] bg-[#1E293B]/50 hover:bg-[#1E293B] text-on-surface transition-colors group">
       <div className="flex items-center gap-3">
       <span className="material-symbols-outlined text-tertiary">notifications_active</span>
       <span className="font-body-base font-semibold">Tüm Sirenleri Sustur</span>
       </div>
-      <span className="font-label-caps text-outline-variant group-hover:text-tertiary transition-colors">BEKLEMEDE</span>
+      <span className="font-label-caps text-outline-variant group-hover:text-tertiary transition-colors">{sirensMuted ? "SUSTURULDU" : "BEKLEMEDE"}</span>
       </button>
-      <button className="flex items-center justify-between p-4 rounded border border-[#334155] bg-[#1E293B]/50 hover:bg-[#1E293B] text-on-surface transition-colors group">
+      <button onClick={() => setLocksOpened((v) => !v)} className="flex items-center justify-between p-4 rounded border border-[#334155] bg-[#1E293B]/50 hover:bg-[#1E293B] text-on-surface transition-colors group">
       <div className="flex items-center gap-3">
       <span className="material-symbols-outlined text-primary">lock_open</span>
       <span className="font-body-base font-semibold">Tüm Kilitleri Aç</span>
       </div>
-      <span className="font-label-caps text-primary">TAMAMLANDI</span>
+      <span className="font-label-caps text-primary">{locksOpened ? "AÇIK" : "KAPALI"}</span>
       </button>
       </div>
       </div>

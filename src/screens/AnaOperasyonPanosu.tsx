@@ -83,12 +83,12 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                 <img alt="Operatör Profili" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByuWeCLpzTumpHGakWtTg_j6Doi1t9zMFb3U_lQQpUxDLYu1HSHMpGLqgljNHajqTv3KiAxXLDx4gZVQSOQCe8o1YuMJ160EH6q4RKegE-dvP53m7xlxd2M2UmRfPoNUAK8-7XrXcUQ5YoAsRKtFfZ9w0NrtYVUM_K9IX_2pHo7-sIEIsBE-jfaKpqZ62Nd0kjCmRjGjiFWHEsMVPSWBDeJxDknbOs7Z1PjccfWDfx_mynTMURA8PyKgwuSiPLRzA9eBuzlFbUtAg" />
               </div>
               <div>
-                <h2 className="font-headline-md text-slate-100 text-headline-md">{operatorName}</h2>
+                <p className="font-headline-md text-slate-100 text-headline-md">{operatorName}</p>
                 <p className="font-body-sm text-outline text-body-sm">{accessLevel}</p>
               </div>
             </div>
             <div className="flex-1 flex flex-col gap-xs overflow-y-auto">
-              <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-600/10 text-blue-400 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest">
+              <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest">
                 <span className="material-symbols-outlined">dashboard</span>
                 Panorama
               </button>
@@ -130,7 +130,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             <img alt="Operatör Profili" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByuWeCLpzTumpHGakWtTg_j6Doi1t9zMFb3U_lQQpUxDLYu1HSHMpGLqgljNHajqTv3KiAxXLDx4gZVQSOQCe8o1YuMJ160EH6q4RKegE-dvP53m7xlxd2M2UmRfPoNUAK8-7XrXcUQ5YoAsRKtFfZ9w0NrtYVUM_K9IX_2pHo7-sIEIsBE-jfaKpqZ62Nd0kjCmRjGjiFWHEsMVPSWBDeJxDknbOs7Z1PjccfWDfx_mynTMURA8PyKgwuSiPLRzA9eBuzlFbUtAg" />
           </div>
           <div>
-            <h2 className="font-headline-md text-slate-100 text-headline-md">{operatorName}</h2>
+            <p className="font-headline-md text-slate-100 text-headline-md">{operatorName}</p>
             <p className="font-body-sm text-outline text-body-sm">{accessLevel}</p>
           </div>
         </div>
@@ -139,7 +139,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
           YENİ OTURUM
         </button>
         <div className="flex-1 flex flex-col gap-xs overflow-y-auto">
-          <button onClick={() => onNavigate("dashboard")} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-600/10 text-blue-400 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
+          <button onClick={() => onNavigate("dashboard")} className="flex items-center gap-md px-md py-sm rounded-lg bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
             <span className="material-symbols-outlined">dashboard</span>
             Panorama
           </button>
@@ -256,6 +256,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
         </header>
         {/* Dashboard Content */}
         <div className="flex-1 overflow-y-auto p-gutter pt-20">
+          <h1 className="font-headline-lg text-headline-lg text-on-surface mb-md">Operasyon Panoraması</h1>
           {/* Filter & Status Bar */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-md gap-md">
             <div className="flex gap-sm flex-wrap">

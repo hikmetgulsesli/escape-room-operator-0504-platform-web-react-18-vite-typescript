@@ -87,13 +87,13 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             <div className="mb-8 px-2 flex items-center gap-3">
               <img alt="Komuta İstasyonu" className="w-10 h-10 rounded-full border border-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE8riB-G4ZNq0vO1HBaaGKEv6zdbjsxRgCfcv6dYgOB2YJTp2ZakeGwO30Vr4Zvg0zWoHAvC4wX8wV0xsoXH8WKWAXOnXGL_kbRR0QIFcRSm3r3BAcV0tIcoIXjq7i6IyaJXvGwBOjbJqd7-VMW297hdhoVPPVRh8vAg8NL9hJFills1F5Keb3KHaDkY3OfNwrSQ1rg1l-pGfNLRVAH7RcDeUihpHlfPd-tlaUOn33j1lCD4sKDBuRbLFz8W7LTl1wX2auast81vE" />
               <div>
-                <h2 className="text-slate-100 font-bold text-sm tracking-normal capitalize">Alpha Sektör</h2>
+                <p className="text-slate-100 font-bold text-sm tracking-normal capitalize">Alpha Sektör</p>
                 <p className="text-slate-500 text-[10px] tracking-wider">Baş Operatör</p>
               </div>
             </div>
             <ul className="flex flex-col gap-2 flex-1">
               <li><button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">dashboard</span>Panorama</button></li>
-              <li><button onClick={() => { onNavigate("operations"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-600/10 text-blue-400 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
+              <li><button onClick={() => { onNavigate("operations"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
               <li><button onClick={() => { onNavigate("logs"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">list_alt</span>Olay Günlüğü</button></li>
               <li><button onClick={() => { onNavigate("analytics"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
               <li><button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
@@ -180,13 +180,13 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
           <div className="mb-8 px-2 flex items-center gap-3">
             <img alt="Komuta İstasyonu" className="w-10 h-10 rounded-full border border-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE8riB-G4ZNq0vO1HBaaGKEv6zdbjsxRgCfcv6dYgOB2YJTp2ZakeGwO30Vr4Zvg0zWoHAvC4wX8wV0xsoXH8WKWAXOnXGL_kbRR0QIFcRSm3r3BAcV0tIcoIXjq7i6IyaJXvGwBOjbJqd7-VMW297hdhoVPPVRh8vAg8NL9hJFills1F5Keb3KHaDkY3OfNwrSQ1rg1l-pGfNLRVAH7RcDeUihpHlfPd-tlaUOn33j1lCD4sKDBuRbLFz8W7LTl1wX2auast81vE" />
             <div>
-              <h2 className="text-slate-100 font-bold text-sm tracking-normal capitalize">Alpha Sektör</h2>
+              <p className="text-slate-100 font-bold text-sm tracking-normal capitalize">Alpha Sektör</p>
               <p className="text-slate-500 text-[10px] tracking-wider">Baş Operatör</p>
             </div>
           </div>
           <ul className="flex flex-col gap-2 flex-1">
             <li><button onClick={() => onNavigate("dashboard")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">dashboard</span>Panorama</button></li>
-            <li><button onClick={() => onNavigate("operations")} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-600/10 text-blue-400 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
+            <li><button onClick={() => onNavigate("operations")} className="flex items-center gap-3 px-4 py-3 rounded bg-blue-500/20 text-blue-200 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">precision_manufacturing</span>Operasyonlar</button></li>
             <li><button onClick={() => onNavigate("logs")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">list_alt</span>Olay Günlüğü</button></li>
             <li><button onClick={() => onNavigate("analytics")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
             <li><button onClick={() => onNavigate("settings")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
