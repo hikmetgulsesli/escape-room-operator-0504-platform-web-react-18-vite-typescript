@@ -10,6 +10,26 @@ const defaultProps = {
 };
 
 describe("AcilDurumPaneli", () => {
+  it("toggles siren mute button", () => {
+    render(<AcilDurumPaneli {...defaultProps} />);
+    const sirenButton = screen.getByText(/Tüm Sirenleri Sustur/);
+    expect(screen.getByText(/BEKLEMEDE/)).toBeInTheDocument();
+    fireEvent.click(sirenButton);
+    expect(screen.getByText(/SUSTURULDU/)).toBeInTheDocument();
+    fireEvent.click(sirenButton);
+    expect(screen.getByText(/BEKLEMEDE/)).toBeInTheDocument();
+  });
+
+  it("toggles lock open button", () => {
+    render(<AcilDurumPaneli {...defaultProps} />);
+    const lockButton = screen.getByText(/Tüm Kilitleri Aç/);
+    expect(screen.getByText(/KAPALI/)).toBeInTheDocument();
+    fireEvent.click(lockButton);
+    expect(screen.getByText(/AÇIK/)).toBeInTheDocument();
+    fireEvent.click(lockButton);
+    expect(screen.getByText(/KAPALI/)).toBeInTheDocument();
+  });
+
   it("renders when active", () => {
     render(<AcilDurumPaneli {...defaultProps} />);
     expect(screen.getByText(/TÜM SİSTEMLER DURDURULDU/)).toBeInTheDocument();
