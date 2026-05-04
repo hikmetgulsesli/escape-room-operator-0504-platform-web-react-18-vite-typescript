@@ -1,0 +1,535 @@
+import { useReducer, useCallback, useEffect, useRef } from "react";
+import type { AppState, AppAction, Room, LogEntry, Player, Puzzle, InventoryItem } from "../types/domain";
+import { saveState, loadState } from "../utils/storage";
+
+function generateId(): string {
+  return Math.random().toString(36).slice(2, 9);
+}
+
+function nowISO(): string {
+  return new Date().toISOString();
+}
+
+function formatTimeSeconds(totalSeconds: number): string {
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+const defaultRooms: Room[] = [
+  {
+    id: "room-1",
+    name: "Karanlık Mahzen",
+    sector: "A-1",
+    status: "in-game",
+    difficulty: "YÜKSEK",
+    maxPlayers: 6,
+    players: [
+      { id: generateId(), name: "Ahmet Y." },
+      { id: generateId(), name: "Selin K." },
+      { id: generateId(), name: "Can B." },
+      { id: generateId(), name: "Elif D." },
+    ],
+    puzzles: [
+      { id: "p1", name: "Giriş Kapısı Şifresi", status: "solved" },
+      { id: "p2", name: "Lazer Ağı Devre Dışı", status: "solved" },
+      { id: "p3", name: "Kimyasal Karışım", status: "locked" },
+      { id: "p4", name: "Gizli Kasa Kilidi", status: "locked" },
+      { id: "p5", name: "Ana Bilgisayar Erişimi", status: "locked" },
+    ],
+    inventory: [
+      { id: "i1", name: "MAVİ ANAHTAR", icon: "key", active: false },
+      { id: "i2", name: "UV FENER", icon: "flashlight_on", active: true },
+      { id: "i3", name: "BEHER 1", icon: "science", active: false },
+      { id: "i4", name: "VERİ DİSKİ", icon: "sd_card", active: false },
+    ],
+    timeRemaining: 8 * 60 + 42,
+    totalTime: 60 * 60,
+    elapsedTime: 51 * 60 + 18,
+    startTime: nowISO(),
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_QE-L31_oiAOTrfwHO7fiW79WunVTPoDBuaON-NItynHjpHeAdlrBPxG4zLgR7Gy2otLenwVMegf1RAXFyitu3bGDL4RCRm-ti6C8B7yvh3nM0qQja4HzBxgf1qaamHDONc57O-Jskk1Ce2n5izv-DGh795BtejIbNpX22lY1LlL0BHMwxpxClb_l7qUkI6jzNz8l8rrfOBr5I0EL7XopV2s0GEn-X1MnaWgXJxfcS4M3hGE27SdBaZB-QMBswtxgaIHmMZMFIns",
+  },
+  {
+    id: "room-2",
+    name: "Laboratuvar Sızıntısı",
+    sector: "B-2",
+    status: "in-game",
+    difficulty: "YÜKSEK",
+    maxPlayers: 6,
+    players: [
+      { id: generateId(), name: "Mehmet A." },
+      { id: generateId(), name: "Zeynep K." },
+      { id: generateId(), name: "Burak T." },
+      { id: generateId(), name: "Derya S." },
+      { id: generateId(), name: "Ozan M." },
+      { id: generateId(), name: "Ece N." },
+    ],
+    puzzles: [
+      { id: "p1", name: "Reaktör Kilidi", status: "solved" },
+      { id: "p2", name: "Soğutma Vanaları", status: "unlocked" },
+      { id: "p3", name: "Radyasyon Kalkanı", status: "locked" },
+    ],
+    inventory: [
+      { id: "i1", name: "KURŞUNNLEMİŞ ELBİSE", icon: "shield", active: true },
+      { id: "i2", name: "GAZ MASKESİ", icon: "masks", active: false },
+    ],
+    timeRemaining: 42 * 60 + 15,
+    totalTime: 60 * 60,
+    elapsedTime: 17 * 60 + 45,
+    startTime: nowISO(),
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA5qvWSGz91u_mhzas79km2Dz_Ll_WnWdP1pw2AzyLViTdneYs0av_ABA7cZ-uCKzdaKtewx6KjpWSy2QZfxG_TvPStwpYwxmabOFZMdF-gnmMnYKUXML-Km0W28rnJ4ktumkUz__mThJUeTLfuNaDxj6Eh49WxoIcycjHXvYpFgUXH8ZGjaVDRIWluA2Z-2gH-OHfwM2N7u_w_dpZQeetzWyPC8u1VMUn3saEzvD3v5F7kar1chmCaRTLiX43ebeaxPRtmtP2DbtQ",
+  },
+  {
+    id: "room-3",
+    name: "Antik Mezar",
+    sector: "C-3",
+    status: "available",
+    difficulty: "ORTA",
+    maxPlayers: 4,
+    players: [],
+    puzzles: [
+      { id: "p1", name: "Hiyeroglif Şifresi", status: "locked" },
+      { id: "p2", name: "Mumya Sargısı", status: "locked" },
+      { id: "p3", name: "Altın Anahtar", status: "locked" },
+    ],
+    inventory: [
+      { id: "i1", name: "FENER", icon: "flashlight_on", active: false },
+      { id: "i2", name: "KAZMA", icon: "hardware", active: false },
+    ],
+    timeRemaining: 60 * 60,
+    totalTime: 60 * 60,
+    elapsedTime: 0,
+    startTime: null,
+    image: "",
+  },
+  {
+    id: "room-4",
+    name: "Uzay İstasyonu",
+    sector: "D-4",
+    status: "maintenance",
+    difficulty: "DÜŞÜK",
+    maxPlayers: 8,
+    players: [],
+    puzzles: [
+      { id: "p1", name: "Hava Kilidi", status: "locked" },
+      { id: "p2", name: "Yer Çekimi Paneli", status: "locked" },
+    ],
+    inventory: [
+      { id: "i1", name: "UZAY KİYAFETİ", icon: "workspace_premium", active: false },
+    ],
+    timeRemaining: 60 * 60,
+    totalTime: 60 * 60,
+    elapsedTime: 0,
+    startTime: null,
+    image: "",
+  },
+];
+
+const defaultLogs: LogEntry[] = [
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T14:45:12",
+    roomId: "room-1",
+    roomName: "Sektör A - Laboratuvar",
+    type: "puzzle",
+    title: "BULMACA ÇÖZÜLDÜ",
+    details: "[PANEL_04] DNA Dizilimi başarıyla tamamlandı. Kilit devre dışı.",
+  },
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T14:42:05",
+    roomId: "room-2",
+    roomName: "Sektör B - Reaktör",
+    type: "hint",
+    title: "İPUCU TALEBİ",
+    details: "Otomatik ipucu gönderildi: 'Soğutma vanalarını sırayla kontrol edin.'",
+  },
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T14:38:55",
+    roomId: "room-4",
+    roomName: "Sektör C - Karantina",
+    type: "emergency",
+    title: "ACİL DURUM",
+    details: "KAPI_ZORLAMA TESPİT EDİLDİ. Sensör: MAIN_EXIT_DOOR.",
+  },
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T14:30:00",
+    roomId: "room-1",
+    roomName: "Sistem Geneli",
+    type: "entry_exit",
+    title: "GİRİŞ / ÇIKIŞ",
+    details: "Seans başlatıldı. Takım: 'Gölge Savaşçıları'. Süre: 60dk.",
+  },
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T14:28:15",
+    roomId: "room-1",
+    roomName: "Sektör A - Laboratuvar",
+    type: "system",
+    title: "SİSTEM RESET",
+    details: "Oda manuel olarak başlangıç durumuna sıfırlandı. Opr: Alpha.",
+  },
+  {
+    id: generateId(),
+    timestamp: "2023-10-27T13:15:00",
+    roomId: "room-2",
+    roomName: "Sektör B - Reaktör",
+    type: "entry_exit",
+    title: "ÇIKIŞ",
+    details: "Seans sona erdi. Süre: 58:42. Başarılı çıkış.",
+  },
+];
+
+function createDefaultState(): AppState {
+  return {
+    currentScreen: "dashboard",
+    selectedRoomId: null,
+    rooms: defaultRooms,
+    logs: defaultLogs,
+    filterStatus: "all",
+    searchQuery: "",
+    logFilterRoom: "all",
+    logFilterType: "all",
+    emergencyActive: false,
+    emergencyStartTime: null,
+    settings: {
+      operatorName: "Alpha Command 01",
+      accessLevel: "Seviye 4 - Baş Operatör",
+      soundAlerts: true,
+      darkMode: true,
+    },
+  };
+}
+
+function appReducer(state: AppState, action: AppAction): AppState {
+  switch (action.type) {
+    case "SET_SCREEN":
+      return { ...state, currentScreen: action.screen };
+
+    case "SELECT_ROOM":
+      return { ...state, selectedRoomId: action.roomId, currentScreen: "operations" };
+
+    case "START_SESSION": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId
+          ? { ...r, status: "in-game" as const, startTime: nowISO(), timeRemaining: r.totalTime, elapsedTime: 0 }
+          : r
+      );
+      const room = rooms.find((r) => r.id === action.roomId);
+      const logs: LogEntry[] = room
+        ? [
+            ...state.logs,
+            {
+              id: generateId(),
+              timestamp: nowISO(),
+              roomId: room.id,
+              roomName: `Sektör ${room.sector} - ${room.name}`,
+              type: "entry_exit",
+              title: "GİRİŞ / ÇIKIŞ",
+              details: `Seans başlatıldı. Oda: ${room.name}. Süre: ${formatTimeSeconds(room.totalTime)}.`,
+            },
+          ]
+        : state.logs;
+      return { ...state, rooms, logs, currentScreen: "operations", selectedRoomId: action.roomId };
+    }
+
+    case "PAUSE_SESSION": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId ? { ...r, status: "paused" as const } : r
+      );
+      return { ...state, rooms };
+    }
+
+    case "RESUME_SESSION": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId ? { ...r, status: "in-game" as const } : r
+      );
+      return { ...state, rooms };
+    }
+
+    case "STOP_SESSION": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId
+          ? { ...r, status: "completed" as const, timeRemaining: 0 }
+          : r
+      );
+      const room = rooms.find((r) => r.id === action.roomId);
+      const logs: LogEntry[] = room
+        ? [
+            ...state.logs,
+            {
+              id: generateId(),
+              timestamp: nowISO(),
+              roomId: room.id,
+              roomName: `Sektör ${room.sector} - ${room.name}`,
+              type: "entry_exit",
+              title: "ÇIKIŞ",
+              details: `Seans sona erdi. Oda: ${room.name}. Süre: ${formatTimeSeconds(room.elapsedTime)}.`,
+            },
+          ]
+        : state.logs;
+      return { ...state, rooms, logs };
+    }
+
+    case "RESET_ROOM": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId
+          ? {
+              ...r,
+              status: "available" as const,
+              players: [],
+              timeRemaining: r.totalTime,
+              elapsedTime: 0,
+              startTime: null,
+              puzzles: r.puzzles.map((p) => ({ ...p, status: "locked" as const })),
+            }
+          : r
+      );
+      const room = rooms.find((r) => r.id === action.roomId);
+      const logs: LogEntry[] = room
+        ? [
+            ...state.logs,
+            {
+              id: generateId(),
+              timestamp: nowISO(),
+              roomId: room.id,
+              roomName: `Sektör ${room.sector} - ${room.name}`,
+              type: "system",
+              title: "SİSTEM RESET",
+              details: `Oda manuel olarak başlangıç durumuna sıfırlandı. Opr: ${state.settings.operatorName}.`,
+            },
+          ]
+        : state.logs;
+      return { ...state, rooms, logs };
+    }
+
+    case "ADD_PLAYER": {
+      const rooms = state.rooms.map((r) => {
+        if (r.id !== action.roomId || r.players.length >= r.maxPlayers) return r;
+        const newPlayer: Player = { id: generateId(), name: action.name };
+        return { ...r, players: [...r.players, newPlayer] };
+      });
+      return { ...state, rooms };
+    }
+
+    case "REMOVE_PLAYER": {
+      const rooms = state.rooms.map((r) =>
+        r.id === action.roomId
+          ? { ...r, players: r.players.filter((p) => p.id !== action.playerId) }
+          : r
+      );
+      return { ...state, rooms };
+    }
+
+    case "TOGGLE_PUZZLE": {
+      const rooms = state.rooms.map((r) => {
+        if (r.id !== action.roomId) return r;
+        const puzzles = r.puzzles.map((p) => {
+          if (p.id !== action.puzzleId) return p;
+          const nextStatus: Puzzle["status"] =
+            p.status === "locked" ? "unlocked" : p.status === "unlocked" ? "solved" : "locked";
+          return { ...p, status: nextStatus };
+        });
+        return { ...r, puzzles };
+      });
+      const room = rooms.find((r) => r.id === action.roomId);
+      const puzzle = room?.puzzles.find((p) => p.id === action.puzzleId);
+      const logs: LogEntry[] =
+        room && puzzle && puzzle.status === "solved"
+          ? [
+              ...state.logs,
+              {
+                id: generateId(),
+                timestamp: nowISO(),
+                roomId: room.id,
+                roomName: `Sektör ${room.sector} - ${room.name}`,
+                type: "puzzle",
+                title: "BULMACA ÇÖZÜLDÜ",
+                details: `Bulmaca tamamlandı: ${puzzle.name}.`,
+              },
+            ]
+          : state.logs;
+      return { ...state, rooms, logs };
+    }
+
+    case "SEND_HINT": {
+      const room = state.rooms.find((r) => r.id === action.roomId);
+      const logs: LogEntry[] = room
+        ? [
+            ...state.logs,
+            {
+              id: generateId(),
+              timestamp: nowISO(),
+              roomId: room.id,
+              roomName: `Sektör ${room.sector} - ${room.name}`,
+              type: "hint",
+              title: "İPUCU GÖNDERİLDİ",
+              details: action.hint,
+            },
+          ]
+        : state.logs;
+      return { ...state, logs };
+    }
+
+    case "SET_FILTER_STATUS":
+      return { ...state, filterStatus: action.status };
+
+    case "SET_SEARCH":
+      return { ...state, searchQuery: action.query };
+
+    case "SET_LOG_FILTERS":
+      return { ...state, logFilterRoom: action.room, logFilterType: action.filterType };
+
+    case "TOGGLE_EMERGENCY": {
+      const alreadyActive = state.emergencyActive;
+      return {
+        ...state,
+        emergencyActive: !alreadyActive,
+        emergencyStartTime: alreadyActive ? state.emergencyStartTime : nowISO(),
+        logs: alreadyActive
+          ? state.logs
+          : [
+              ...state.logs,
+              {
+                id: generateId(),
+                timestamp: nowISO(),
+                roomId: "system",
+                roomName: "Sistem Geneli",
+                type: "emergency",
+                title: "ACİL DURUM",
+                details: "Tüm sistemler acil durum moduna alındı.",
+              },
+            ],
+      };
+    }
+
+    case "RESOLVE_EMERGENCY": {
+      return {
+        ...state,
+        emergencyActive: false,
+        logs: [
+          ...state.logs,
+          {
+            id: generateId(),
+            timestamp: nowISO(),
+            roomId: "system",
+            roomName: "Sistem Geneli",
+            type: "system",
+            title: "ACİL DURUM GIDERİLDİ",
+            details: "Operatör tarafından güvenli duruma dönüldü.",
+          },
+        ],
+      };
+    }
+
+    case "UPDATE_SETTINGS":
+      return { ...state, settings: { ...state.settings, ...action.settings } };
+
+    case "CLEAR_STORAGE": {
+      const fresh = createDefaultState();
+      return { ...fresh, settings: state.settings };
+    }
+
+    case "RESET_TO_DEFAULTS":
+      return createDefaultState();
+
+    case "IMPORT_STATE":
+      return action.state;
+
+    case "TICK_TIMER": {
+      const rooms = state.rooms.map((r) => {
+        if (r.id !== action.roomId || r.status !== "in-game") return r;
+        const nextRemaining = Math.max(0, r.timeRemaining - 1);
+        const nextElapsed = r.elapsedTime + 1;
+        return { ...r, timeRemaining: nextRemaining, elapsedTime: nextElapsed };
+      });
+      return { ...state, rooms };
+    }
+
+    default:
+      return state;
+  }
+}
+
+export function useAppState() {
+  const persisted = loadState();
+  const initialState = persisted ?? createDefaultState();
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    saveState(state);
+  }, [state]);
+
+  useEffect(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      state.rooms.forEach((r) => {
+        if (r.status === "in-game") {
+          dispatch({ type: "TICK_TIMER", roomId: r.id });
+        }
+      });
+    }, 1000);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [state.rooms]);
+
+  const getFilteredRooms = useCallback(() => {
+    let result = state.rooms;
+    if (state.filterStatus !== "all") {
+      result = result.filter((r) => r.status === state.filterStatus);
+    }
+    if (state.searchQuery.trim()) {
+      const q = state.searchQuery.toLowerCase();
+      result = result.filter(
+        (r) =>
+          r.name.toLowerCase().includes(q) ||
+          r.sector.toLowerCase().includes(q) ||
+          r.players.some((p) => p.name.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [state.rooms, state.filterStatus, state.searchQuery]);
+
+  const getFilteredLogs = useCallback(() => {
+    let result = state.logs;
+    if (state.logFilterRoom !== "all") {
+      result = result.filter((l) => l.roomId === state.logFilterRoom);
+    }
+    if (state.logFilterType !== "all") {
+      result = result.filter((l) => l.type === state.logFilterType);
+    }
+    if (state.searchQuery.trim()) {
+      const q = state.searchQuery.toLowerCase();
+      result = result.filter(
+        (l) =>
+          l.title.toLowerCase().includes(q) ||
+          l.details.toLowerCase().includes(q) ||
+          l.roomName.toLowerCase().includes(q)
+      );
+    }
+    return result.slice().sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }, [state.logs, state.logFilterRoom, state.logFilterType, state.searchQuery]);
+
+  const getSelectedRoom = useCallback(() => {
+    return state.rooms.find((r) => r.id === state.selectedRoomId) || null;
+  }, [state.rooms, state.selectedRoomId]);
+
+  const formatTime = useCallback((seconds: number) => {
+    return formatTimeSeconds(seconds);
+  }, []);
+
+  return {
+    state,
+    dispatch,
+    getFilteredRooms,
+    getFilteredLogs,
+    getSelectedRoom,
+    formatTime,
+  };
+}
