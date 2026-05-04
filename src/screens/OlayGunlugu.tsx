@@ -40,6 +40,9 @@ export function OlayGunlugu(props: OlayGunluguProps) {
   } = props;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const typeOptions: { value: LogType | "all"; label: string }[] = [
     { value: "all", label: "Tüm Olay Tipleri" },
@@ -102,7 +105,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
             <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="mt-8 w-full py-3 bg-primary text-on-primary rounded font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">YENİ OTURUM</button>
             <div className="mt-6 flex flex-col gap-2 w-full pt-4 border-t border-slate-800">
               <button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">help</span>Destek</button>
-              <button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span>Çıkış</button>
+              <button onClick={() => { setShowLogoutConfirm(true); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span>Çıkış</button>
             </div>
           </nav>
         </div>
@@ -127,7 +130,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
         <button onClick={() => onNavigate("dashboard")} className="mt-8 w-full py-3 bg-primary text-on-primary rounded font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">YENİ OTURUM</button>
         <div className="mt-6 flex flex-col gap-2 w-full pt-4 border-t border-slate-800">
           <button onClick={() => onNavigate("support")} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">help</span><span>Destek</span></button>
-          <button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span><span>Çıkış</span></button>
+          <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span><span>Çıkış</span></button>
         </div>
       </nav>
       {/* Main Application Canvas */}
@@ -152,12 +155,53 @@ export function OlayGunlugu(props: OlayGunluguProps) {
               />
             </div>
             <div className="flex items-center gap-3">
-              <button className="text-slate-400 hover:bg-slate-800/50 transition-colors p-2 rounded-full flex items-center justify-center" aria-label="Bildirimler">
-                <span className="material-symbols-outlined">notifications</span>
-              </button>
-              <button onClick={() => onNavigate("settings")} className="text-slate-400 hover:bg-slate-800/50 transition-colors p-2 rounded-full flex items-center justify-center" aria-label="Ayarlar">
-                <span className="material-symbols-outlined">settings</span>
-              </button>
+              <div className="relative">
+                <button onClick={() => setShowNotifications(!showNotifications)} className="text-slate-400 hover:bg-slate-800/50 transition-colors p-2 rounded-full flex items-center justify-center relative" aria-label="Bildirimler">
+                  <span className="material-symbols-outlined">notifications</span>
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+                </button>
+                {showNotifications && (
+                  <div className="absolute right-0 top-full mt-2 w-80 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                    <h3 className="font-headline-md text-headline-md mb-3 border-b border-outline-variant pb-2">Bildirimler</h3>
+                    <div className="space-y-3 max-h-64 overflow-y-auto">
+                      <div className="flex gap-3 items-start p-2 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+                        <span className="material-symbols-outlined text-primary text-[20px]">info</span>
+                        <div>
+                          <p className="font-body-sm text-body-sm text-on-surface">Yeni sistem güncellemesi mevcut.</p>
+                          <p className="text-outline-variant text-xs mt-1">2 dakika önce</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button onClick={() => setShowNotifications(false)} className="w-full mt-3 text-center text-primary font-label-caps text-label-caps py-2 hover:bg-surface-container-high rounded transition-colors">Kapat</button>
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <button onClick={() => setShowProfile(!showProfile)} className="text-slate-400 hover:bg-slate-800/50 transition-colors p-2 rounded-full flex items-center justify-center" aria-label="Profil">
+                  <span className="material-symbols-outlined">person</span>
+                </button>
+                {showProfile && (
+                  <div className="absolute right-0 top-full mt-2 w-64 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                    <div className="flex items-center gap-3 mb-4 border-b border-outline-variant pb-3">
+                      <div className="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden">
+                        <img alt="Komuta İstasyonu" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPR25QVWi6cakeqwQMdwLXSncVhkbPQtfH5vMTUU2twYo_2_80izev16tH0kbceS1LFmAplTVL01D9iKXn3A3WcSR5HnjU8pzIyvuHat7MYYnwkQ4AViNdzzPbbDbZNiTua1FHkxtd3klEUWJZNtPV8rqHrYXLtmkBsMwXbKCWFvYBm8LmqxAiqRA93zmHqNQ9gP6b37xW9ZKz8seFzFQXfKRGQG3cVGqg_Ugj3WL7_r5XMMQq-u_H-DvqfEDzKUQ7EX0si-3wdCU" />
+                      </div>
+                      <div>
+                        <h3 className="font-headline-md text-headline-md text-on-surface">{operatorName}</h3>
+                        <p className="font-body-sm text-body-sm text-outline">{accessLevel}</p>
+                      </div>
+                    </div>
+                    <button onClick={() => { setShowProfile(false); onNavigate("settings"); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-on-surface font-body-sm">
+                      <span className="material-symbols-outlined text-outline text-[18px]">settings</span>
+                      Ayarlar
+                    </button>
+                    <button onClick={() => { setShowProfile(false); setShowLogoutConfirm(true); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-error font-body-sm">
+                      <span className="material-symbols-outlined text-[18px]">logout</span>
+                      Çıkış
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="h-6 w-px bg-slate-700/50 mx-2"></div>
               <button onClick={onToggleEmergency} className="bg-error hover:bg-error-container text-on-error px-4 py-1.5 rounded font-label-caps text-label-caps tracking-widest transition-colors animate-pulse border border-error-container">
                 ACİL DURDUR
@@ -283,7 +327,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
                 <button className="p-1 rounded hover:bg-surface-variant text-on-surface-variant disabled:opacity-50" disabled={true}>
                   <span className="material-symbols-outlined">chevron_left</span>
                 </button>
-                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa 1 / 1</span>
+                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa 1 / {totalPages}</span>
                 <button className="p-1 rounded hover:bg-surface-variant text-on-surface" disabled={totalPages <= 1}>
                   <span className="material-symbols-outlined">chevron_right</span>
                 </button>
@@ -292,6 +336,24 @@ export function OlayGunlugu(props: OlayGunluguProps) {
           </div>
         </main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
+            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
+                İptal
+              </button>
+              <button onClick={() => { setShowLogoutConfirm(false); onNavigate("dashboard"); }} className="flex-1 bg-error text-on-error font-body-base py-2 rounded hover:bg-error/90 transition-colors">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
