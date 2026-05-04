@@ -48,6 +48,11 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
   const [newPlayerName, setNewPlayerName] = useState("");
   const [hintText, setHintText] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [micActive, setMicActive] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const roomLogs = logs.filter((l) => l.roomId === room.id).slice(0, 6);
 
@@ -93,10 +98,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
               <li><button onClick={() => { onNavigate("analytics"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
               <li><button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
             </ul>
-            <button onClick={() => {}} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
+            <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
             <ul className="flex flex-col gap-2 border-t border-slate-800 pt-4">
               <li><button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>help</span>Destek</button></li>
-              <li><button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
+              <li><button onClick={() => { setShowLogoutConfirm(true); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
             </ul>
           </nav>
         </div>
@@ -120,12 +125,51 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             ACİL DURDUR
           </button>
           <div className="flex items-center gap-4 border-l border-slate-700/50 pl-4">
-            <button className="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center" aria-label="Bildirimler">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
-            <button onClick={() => onNavigate("settings")} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center" aria-label="Ayarlar">
-              <span className="material-symbols-outlined">settings</span>
-            </button>
+            <div className="relative">
+              <button onClick={() => setShowNotifications(!showNotifications)} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center relative" aria-label="Bildirimler">
+                <span className="material-symbols-outlined">notifications</span>
+                <span className="absolute top-0 right-0 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+              </button>
+              {showNotifications && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <h3 className="font-headline-md text-headline-md mb-3 border-b border-outline-variant pb-2">Bildirimler</h3>
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    <div className="flex gap-3 items-start p-2 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-primary text-[20px]">info</span>
+                      <div>
+                        <p className="font-body-sm text-body-sm text-on-surface">Oda operasyonunda yeni olay.</p>
+                        <p className="text-outline-variant text-xs mt-1">1 dakika önce</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowNotifications(false)} className="w-full mt-3 text-center text-primary font-label-caps text-label-caps py-2 hover:bg-surface-container-high rounded transition-colors">Kapat</button>
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <button onClick={() => setShowProfile(!showProfile)} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center" aria-label="Profil">
+                <span className="material-symbols-outlined">person</span>
+              </button>
+              {showProfile && (
+                <div className="absolute right-0 top-full mt-2 w-64 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <div className="flex items-center gap-3 mb-4 border-b border-outline-variant pb-3">
+                    <img alt="Operatör Profili" className="w-10 h-10 rounded-full border border-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIfuaj8PBeVuOPTdoM9SI74io__O3CY8pe3fvZEuuwg1qxMueWAarhyUehDWWmfHcLQ66rDjEnxlN-uY4sGibVD8GKI2A6edtwH9_alSxv-vZR_3GbSG1hEXxeSB37m_uufw-9Q5tDyl4-VpDLw8-tMk4x2RwvMIWHW3mpy3QVKGxF_5LbsXfUWJ_x6moZUBVhHchGRt3rThwtHcJogItYK6RQ9Mpq-tKvji149ib3HaZPi2-W5ao-7BtFYBdngkFkavEPArOcHMI" />
+                    <div>
+                      <h3 className="font-headline-md text-headline-md text-on-surface">Alpha Sektör</h3>
+                      <p className="font-body-sm text-body-sm text-outline">Baş Operatör</p>
+                    </div>
+                  </div>
+                  <button onClick={() => { setShowProfile(false); onNavigate("settings"); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-on-surface font-body-sm">
+                    <span className="material-symbols-outlined text-outline text-[18px]">settings</span>
+                    Ayarlar
+                  </button>
+                  <button onClick={() => { setShowProfile(false); setShowLogoutConfirm(true); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-error font-body-sm">
+                    <span className="material-symbols-outlined text-[18px]">logout</span>
+                    Çıkış
+                  </button>
+                </div>
+              )}
+            </div>
             <img alt="Operatör Profili" className="w-8 h-8 rounded-full border border-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIfuaj8PBeVuOPTdoM9SI74io__O3CY8pe3fvZEuuwg1qxMueWAarhyUehDWWmfHcLQ66rDjEnxlN-uY4sGibVD8GKI2A6edtwH9_alSxv-vZR_3GbSG1hEXxeSB37m_uufw-9Q5tDyl4-VpDLw8-tMk4x2RwvMIWHW3mpy3QVKGxF_5LbsXfUWJ_x6moZUBVhHchGRt3rThwtHcJogItYK6RQ9Mpq-tKvji149ib3HaZPi2-W5ao-7BtFYBdngkFkavEPArOcHMI" />
           </div>
         </div>
@@ -147,10 +191,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             <li><button onClick={() => onNavigate("analytics")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
             <li><button onClick={() => onNavigate("settings")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
           </ul>
-          <button onClick={() => {}} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
+          <button onClick={() => onNavigate("dashboard")} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
           <ul className="flex flex-col gap-2 border-t border-slate-800 pt-4">
             <li><button onClick={() => onNavigate("support")} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>help</span>Destek</button></li>
-            <li><button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
+            <li><button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
           </ul>
         </nav>
         {/* Main Content */}
@@ -190,7 +234,7 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
               </div>
             </div>
             {/* Surveillance */}
-            <div className="glass-panel rounded-xl overflow-hidden relative aspect-video border border-slate-700 group">
+            <div className={`glass-panel rounded-xl overflow-hidden relative aspect-video border border-slate-700 group ${fullscreen ? "fixed inset-0 z-[200] aspect-auto" : ""}`}>
               {room.image ? (
                 <img alt="Gözetim Kamerası" className="w-full h-full object-cover opacity-70" src={room.image} />
               ) : (
@@ -202,8 +246,8 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
                 <span className="font-label-caps text-label-caps text-primary tracking-widest">KAM 01 - ANA LAB</span>
               </div>
               <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700" aria-label="Tam Ekran"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>fullscreen</span></button>
-                <button className="bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700" aria-label="Mikrofon"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>mic</span></button>
+                <button onClick={() => setFullscreen(!fullscreen)} className="bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700" aria-label="Tam Ekran"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>{fullscreen ? "fullscreen_exit" : "fullscreen"}</span></button>
+                <button onClick={() => setMicActive(!micActive)} className={`bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700 ${micActive ? "bg-primary/20 border-primary" : ""}`} aria-label="Mikrofon"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>{micActive ? "mic" : "mic_off"}</span></button>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -336,6 +380,24 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
           </div>
         </main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
+            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
+                İptal
+              </button>
+              <button onClick={() => { setShowLogoutConfirm(false); onNavigate("dashboard"); }} className="flex-1 bg-error text-on-error font-body-base py-2 rounded hover:bg-error/90 transition-colors">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

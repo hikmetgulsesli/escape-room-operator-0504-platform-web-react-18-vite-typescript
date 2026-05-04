@@ -37,6 +37,9 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
   const [password, setPassword] = useState("");
   const [importText, setImportText] = useState("");
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   return (
     <>
@@ -58,7 +61,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <div className="mt-auto space-y-2">
               <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
               <button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">help</span><span>Destek</span></button>
-              <button onClick={() => {}} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
+              <button onClick={() => { setShowLogoutConfirm(true); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
             </div>
           </nav>
         </div>
@@ -80,7 +83,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
         <div className="mt-auto space-y-2">
           <button onClick={() => onNavigate("dashboard")} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
           <button onClick={() => onNavigate("support")} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">help</span><span>Destek</span></button>
-          <button onClick={() => {}} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
+          <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
         </div>
       </nav>
       {/* TopNavBar */}
@@ -97,13 +100,51 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <input className="bg-surface-container-high border-outline-variant text-on-surface text-sm rounded-full pl-9 pr-4 py-1.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none w-64 transition-all" placeholder="Sistemde Ara..." type="text" />
           </div>
           <div className="flex space-x-2">
-            <button className="p-2 text-slate-400 hover:text-blue-400 hover:bg-slate-800/50 rounded-full transition-colors relative" aria-label="Bildirimler">
-              <span className="material-symbols-outlined">notifications</span>
-              <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full animate-pulse"></span>
-            </button>
-            <button onClick={() => onNavigate("settings")} className="p-2 text-blue-400 font-bold border-b-2 border-blue-500 hover:bg-slate-800/50 transition-colors" aria-label="Ayarlar">
-              <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>settings</span>
-            </button>
+            <div className="relative">
+              <button onClick={() => setShowNotifications(!showNotifications)} className="p-2 text-slate-400 hover:text-blue-400 hover:bg-slate-800/50 rounded-full transition-colors relative" aria-label="Bildirimler">
+                <span className="material-symbols-outlined">notifications</span>
+                <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+              </button>
+              {showNotifications && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <h3 className="font-headline-md text-headline-md mb-3 border-b border-outline-variant pb-2">Bildirimler</h3>
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    <div className="flex gap-3 items-start p-2 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-primary text-[20px]">info</span>
+                      <div>
+                        <p className="font-body-sm text-body-sm text-on-surface">Yeni sistem güncellemesi mevcut.</p>
+                        <p className="text-outline-variant text-xs mt-1">2 dakika önce</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowNotifications(false)} className="w-full mt-3 text-center text-primary font-label-caps text-label-caps py-2 hover:bg-surface-container-high rounded transition-colors">Kapat</button>
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <button onClick={() => setShowProfile(!showProfile)} className="p-2 text-blue-400 font-bold border-b-2 border-blue-500 hover:bg-slate-800/50 transition-colors" aria-label="Profil">
+                <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>settings</span>
+              </button>
+              {showProfile && (
+                <div className="absolute right-0 top-full mt-2 w-64 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <div className="flex items-center gap-3 mb-4 border-b border-outline-variant pb-3">
+                    <img alt="Operatör Profili" className="w-10 h-10 rounded-full border border-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY6ZM0cKIXJ8pEwsyAiMN76PC_GmBIhCAUvZ2jvALBsRb7KH7m3GxIV7xXE1piPZJcZct59rsqEHK9FwEE6k6dNX4-Vy7ROLxBNgAU51WdTWQBNF_oufU3zYRpK7a2OQ9qeAp8WMp8_9a38xdDLITVUjgE1J7nYHA7hkrhZd_ey4B8K3o7GgxNhs1nyXOSwnIquvLateFbzccGqzl3kiab25UqsDrxoagqAK8XgM0ovp7guGOG8z4yrsxzgMc2UyvBxteSVTJIbq0" />
+                    <div>
+                      <h3 className="font-headline-md text-headline-md text-on-surface">Alpha Sektör</h3>
+                      <p className="font-body-sm text-body-sm text-outline">Baş Operatör</p>
+                    </div>
+                  </div>
+                  <button onClick={() => { setShowProfile(false); onNavigate("settings"); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-on-surface font-body-sm">
+                    <span className="material-symbols-outlined text-outline text-[18px]">settings</span>
+                    Ayarlar
+                  </button>
+                  <button onClick={() => { setShowProfile(false); setShowLogoutConfirm(true); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-error font-body-sm">
+                    <span className="material-symbols-outlined text-[18px]">logout</span>
+                    Çıkış
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           <button onClick={onToggleEmergency} className="bg-error text-on-error font-label-caps px-4 py-1.5 rounded flex items-center space-x-1 hover:bg-red-400 transition-colors animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]">
             <span className="material-symbols-outlined text-sm">warning</span>
@@ -269,6 +310,24 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
           </div>
         </div>
       </main>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
+            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
+                İptal
+              </button>
+              <button onClick={() => { setShowLogoutConfirm(false); onNavigate("dashboard"); }} className="flex-1 bg-error text-on-error font-body-base py-2 rounded hover:bg-error/90 transition-colors">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -42,6 +42,10 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
   } = props;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [activeMicRoomId, setActiveMicRoomId] = useState<string | null>(null);
 
   const allCount = rooms.length;
   const activeCount = rooms.filter((r) => r.status === "in-game" || r.status === "paused").length;
@@ -110,7 +114,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                 <span className="material-symbols-outlined">help</span>
                 Destek
               </button>
-              <button onClick={() => {}} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
+              <button onClick={() => { setShowLogoutConfirm(true); setMobileMenuOpen(false); }} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
                 <span className="material-symbols-outlined">logout</span>
                 <span>Çıkış</span>
               </button>
@@ -130,7 +134,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             <p className="font-body-sm text-outline text-body-sm">{accessLevel}</p>
           </div>
         </div>
-        <button onClick={() => {}} className="mb-lg w-full bg-[#3B82F6] hover:bg-primary-container text-white font-label-caps text-label-caps py-sm px-md rounded transition-colors flex items-center justify-center gap-sm">
+        <button onClick={() => onNavigate("dashboard")} className="mb-lg w-full bg-[#3B82F6] hover:bg-primary-container text-white font-label-caps text-label-caps py-sm px-md rounded transition-colors flex items-center justify-center gap-sm">
           <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
           YENİ OTURUM
         </button>
@@ -161,7 +165,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             <span className="material-symbols-outlined">help</span>
             Destek
           </button>
-          <button onClick={() => {}} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
+          <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
             <span className="material-symbols-outlined">logout</span>
             <span>Çıkış</span>
           </button>
@@ -189,12 +193,60 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             </div>
           </div>
           <div className="flex items-center gap-md">
-            <button className="p-xs text-slate-400 hover:bg-slate-800/50 transition-colors rounded-full flex items-center justify-center" aria-label="Bildirimler">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
-            <button onClick={() => onNavigate("settings")} className="p-xs text-slate-400 hover:bg-slate-800/50 transition-colors rounded-full flex items-center justify-center" aria-label="Ayarlar">
-              <span className="material-symbols-outlined">settings</span>
-            </button>
+            <div className="relative">
+              <button onClick={() => setShowNotifications(!showNotifications)} className="p-xs text-slate-400 hover:bg-slate-800/50 transition-colors rounded-full flex items-center justify-center relative" aria-label="Bildirimler">
+                <span className="material-symbols-outlined">notifications</span>
+                <span className="absolute top-0 right-0 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+              </button>
+              {showNotifications && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <h3 className="font-headline-md text-headline-md mb-3 border-b border-outline-variant pb-2">Bildirimler</h3>
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    <div className="flex gap-3 items-start p-2 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-primary text-[20px]">info</span>
+                      <div>
+                        <p className="font-body-sm text-body-sm text-on-surface">Yeni sistem güncellemesi mevcut.</p>
+                        <p className="text-outline-variant text-xs mt-1">2 dakika önce</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 items-start p-2 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-tertiary text-[20px]">warning</span>
+                      <div>
+                        <p className="font-body-sm text-body-sm text-on-surface">Oda 3 bakım moduna alındı.</p>
+                        <p className="text-outline-variant text-xs mt-1">15 dakika önce</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowNotifications(false)} className="w-full mt-3 text-center text-primary font-label-caps text-label-caps py-2 hover:bg-surface-container-high rounded transition-colors">Kapat</button>
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <button onClick={() => setShowProfile(!showProfile)} className="p-xs text-slate-400 hover:bg-slate-800/50 transition-colors rounded-full flex items-center justify-center" aria-label="Profil">
+                <span className="material-symbols-outlined">person</span>
+              </button>
+              {showProfile && (
+                <div className="absolute right-0 top-full mt-2 w-64 bg-surface-container border border-outline-variant rounded-lg shadow-xl z-50 p-4">
+                  <div className="flex items-center gap-3 mb-4 border-b border-outline-variant pb-3">
+                    <div className="w-10 h-10 rounded-full bg-surface-container overflow-hidden shrink-0 border border-outline-variant">
+                      <img alt="Operatör Profili" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByuWeCLpzTumpHGakWtTg_j6Doi1t9zMFb3U_lQQpUxDLYu1HSHMpGLqgljNHajqTv3KiAxXLDx4gZVQSOQCe8o1YuMJ160EH6q4RKegE-dvP53m7xlxd2M2UmRfPoNUAK8-7XrXcUQ5YoAsRKtFfZ9w0NrtYVUM_K9IX_2pHo7-sIEIsBE-jfaKpqZ62Nd0kjCmRjGjiFWHEsMVPSWBDeJxDknbOs7Z1PjccfWDfx_mynTMURA8PyKgwuSiPLRzA9eBuzlFbUtAg" />
+                    </div>
+                    <div>
+                      <h3 className="font-headline-md text-headline-md text-on-surface">{operatorName}</h3>
+                      <p className="font-body-sm text-body-sm text-outline">{accessLevel}</p>
+                    </div>
+                  </div>
+                  <button onClick={() => { setShowProfile(false); onNavigate("settings"); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-on-surface font-body-sm">
+                    <span className="material-symbols-outlined text-outline text-[18px]">settings</span>
+                    Ayarlar
+                  </button>
+                  <button onClick={() => { setShowProfile(false); setShowLogoutConfirm(true); }} className="w-full text-left px-3 py-2 rounded hover:bg-surface-container-high transition-colors flex items-center gap-2 text-error font-body-sm">
+                    <span className="material-symbols-outlined text-[18px]">logout</span>
+                    Çıkış
+                  </button>
+                </div>
+              )}
+            </div>
             <div className="w-px h-6 bg-slate-700 mx-xs"></div>
             <button onClick={onToggleEmergency} className="bg-[#EF4444] hover:bg-red-600 text-white font-label-caps text-label-caps py-xs px-md rounded transition-colors flex items-center gap-xs emergency-pulse">
               <span className="material-symbols-outlined text-[16px]">warning</span>
@@ -252,7 +304,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                     </span>
                   </div>
                   <div className="absolute bottom-sm left-sm right-sm flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={(e) => { e.stopPropagation(); }} className="bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors" aria-label="Mikrofon"><span className="material-symbols-outlined text-[16px]">mic</span></button>
+                    <button onClick={(e) => { e.stopPropagation(); setActiveMicRoomId(activeMicRoomId === room.id ? null : room.id); }} className={`bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors ${activeMicRoomId === room.id ? "bg-primary/20 border-primary" : ""}`} aria-label="Mikrofon"><span className="material-symbols-outlined text-[16px]">mic</span></button>
                     <button onClick={(e) => { e.stopPropagation(); onSelectRoom(room.id); }} className="bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors" aria-label="İpucu"><span className="material-symbols-outlined text-[16px]">lightbulb</span></button>
                   </div>
                 </div>
@@ -294,6 +346,24 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
           </div>
         </div>
       </main>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="bg-surface border border-outline-variant rounded-lg shadow-2xl p-6 w-full max-w-sm">
+            <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Çıkış Onayı</h3>
+            <p className="font-body-base text-body-base text-on-surface-variant mb-6">Çıkış yapmak istediğinize emin misiniz? Aktif oturumlar kapanmayacak.</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-surface-container border border-outline-variant text-on-surface font-body-base py-2 rounded hover:bg-surface-variant transition-colors">
+                İptal
+              </button>
+              <button onClick={() => { setShowLogoutConfirm(false); onNavigate("dashboard"); }} className="flex-1 bg-error text-on-error font-body-base py-2 rounded hover:bg-error/90 transition-colors">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
