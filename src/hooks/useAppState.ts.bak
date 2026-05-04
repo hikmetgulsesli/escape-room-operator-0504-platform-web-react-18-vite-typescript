@@ -420,8 +420,8 @@ function appReducer(state: AppState, action: AppAction): AppState {
             roomId: "system",
             roomName: "Sistem Geneli",
             type: "system",
-            title: "ACİL DURUM GİDERİLDİ",
-            details: note ? `Operatör tarafından güvenli duruma dönüldü. Not: ${note}` : "Operatör tarafından güvenli duruma dönüldü.",
+            title: "ACİL DURUM GIDERİLDİ",
+            details: "Operatör tarafından güvenli duruma dönüldü.",
           },
         ],
       };
@@ -457,10 +457,9 @@ function appReducer(state: AppState, action: AppAction): AppState {
 }
 
 export function useAppState() {
-  const [state, dispatch] = useReducer(appReducer, (() => {
-    const persisted = loadState();
-    return persisted ?? createDefaultState();
-  })());
+  const persisted = loadState();
+  const initialState = persisted ?? createDefaultState();
+  const [state, dispatch] = useReducer(appReducer, initialState);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -468,14 +467,10 @@ export function useAppState() {
     saveState(state);
   }, [state]);
 
-  // Use a ref to avoid recreating the interval every second
-  const roomsRef = useRef(state.rooms);
-  roomsRef.current = state.rooms;
-
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
-      roomsRef.current.forEach((r) => {
+      state.rooms.forEach((r) => {
         if (r.status === "in-game") {
           dispatch({ type: "TICK_TIMER", roomId: r.id });
         }
@@ -484,7 +479,7 @@ export function useAppState() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, []); // Empty deps - single stable interval
+  }, [state.rooms]);
 
   const getFilteredRooms = useCallback(() => {
     let result = state.rooms;

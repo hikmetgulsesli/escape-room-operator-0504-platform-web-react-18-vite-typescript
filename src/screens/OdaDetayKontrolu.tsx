@@ -93,10 +93,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
               <li><button onClick={() => { onNavigate("analytics"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
               <li><button onClick={() => { onNavigate("settings"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
             </ul>
-            <button className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
+            <button onClick={() => {}} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
             <ul className="flex flex-col gap-2 border-t border-slate-800 pt-4">
               <li><button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>help</span>Destek</button></li>
-              <li><button className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
+              <li><button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
             </ul>
           </nav>
         </div>
@@ -147,10 +147,10 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
             <li><button onClick={() => onNavigate("analytics")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">analytics</span>Analizler</button></li>
             <li><button onClick={() => onNavigate("settings")} className="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined">settings_input_component</span>Sistem Ayarları</button></li>
           </ul>
-          <button className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
+          <button onClick={() => {}} className="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">YENİ OTURUM</button>
           <ul className="flex flex-col gap-2 border-t border-slate-800 pt-4">
             <li><button onClick={() => onNavigate("support")} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>help</span>Destek</button></li>
-            <li><button className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
+            <li><button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors w-full text-left"><span className="material-symbols-outlined" style={{fontSize: "18px"}}>logout</span>Çıkış</button></li>
           </ul>
         </nav>
         {/* Main Content */}
@@ -176,11 +176,6 @@ export function OdaDetayKontrolu(props: OdaDetayKontroluProps) {
                     </button>
                   )}
                   {room.status === "paused" && (
-                    <button onClick={onResume} className="bg-primary text-on-primary px-6 py-2 rounded font-bold hover:bg-primary/90 transition-colors flex items-center gap-2">
-                      <span className="material-symbols-outlined">play_arrow</span>DEVAM
-                    </button>
-                  )}
-                  {room.status === "in-game" && (
                     <button onClick={onResume} className="bg-primary text-on-primary px-6 py-2 rounded font-bold hover:bg-primary/90 transition-colors flex items-center gap-2">
                       <span className="material-symbols-outlined">play_arrow</span>DEVAM
                     </button>

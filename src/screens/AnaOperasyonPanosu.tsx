@@ -110,9 +110,9 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                 <span className="material-symbols-outlined">help</span>
                 Destek
               </button>
-              <button className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest">
+              <button onClick={() => {}} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
                 <span className="material-symbols-outlined">logout</span>
-                Çıkış
+                <span>Çıkış</span>
               </button>
             </div>
           </nav>
@@ -130,7 +130,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             <p className="font-body-sm text-outline text-body-sm">{accessLevel}</p>
           </div>
         </div>
-        <button className="mb-lg w-full bg-[#3B82F6] hover:bg-primary-container text-white font-label-caps text-label-caps py-sm px-md rounded transition-colors flex items-center justify-center gap-sm">
+        <button onClick={() => {}} className="mb-lg w-full bg-[#3B82F6] hover:bg-primary-container text-white font-label-caps text-label-caps py-sm px-md rounded transition-colors flex items-center justify-center gap-sm">
           <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
           YENİ OTURUM
         </button>
@@ -161,9 +161,9 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
             <span className="material-symbols-outlined">help</span>
             Destek
           </button>
-          <button className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
+          <button onClick={() => {}} className="flex items-center gap-md px-md py-sm rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors font-inter text-xs font-medium uppercase tracking-widest text-left">
             <span className="material-symbols-outlined">logout</span>
-            Çıkış
+            <span>Çıkış</span>
           </button>
         </div>
       </nav>

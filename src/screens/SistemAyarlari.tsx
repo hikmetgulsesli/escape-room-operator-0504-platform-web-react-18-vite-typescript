@@ -58,7 +58,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
             <div className="mt-auto space-y-2">
               <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
               <button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">help</span><span>Destek</span></button>
-              <button className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
+              <button onClick={() => {}} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
             </div>
           </nav>
         </div>
@@ -80,7 +80,7 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
         <div className="mt-auto space-y-2">
           <button onClick={() => onNavigate("dashboard")} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-bold tracking-widest text-xs transition-colors mb-4 shadow-[0_0_15px_rgba(59,130,246,0.3)]">YENİ OTURUM</button>
           <button onClick={() => onNavigate("support")} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">help</span><span>Destek</span></button>
-          <button className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
+          <button onClick={() => {}} className="flex items-center space-x-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-all w-full text-left"><span className="material-symbols-outlined text-lg">logout</span><span>Çıkış</span></button>
         </div>
       </nav>
       {/* TopNavBar */}
@@ -194,9 +194,8 @@ export function SistemAyarlari(props: SistemAyarlariProps) {
                 </div>
               </div>
               <div className="p-md bg-surface-container-low border-t border-outline-variant/50 flex justify-end">
-                <button onClick={() => { if (password) { setPassword(""); } }} className="bg-primary text-on-primary font-body-base text-body-base font-semibold px-6 py-2 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(173,198,255,0.15)] flex items-center space-x-2">
+                <button onClick={() => { onUpdateSettings({}); if (password) { setPassword(""); } }} className="bg-primary text-on-primary font-body-base text-body-base font-semibold px-6 py-2 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(173,198,255,0.15)] flex items-center space-x-2">
                   <span className="material-symbols-outlined text-sm">save</span>
-                  <span>Değişiklikleri Kaydet</span>
                 </button>
               </div>
             </section>

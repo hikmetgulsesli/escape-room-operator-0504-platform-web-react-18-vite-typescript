@@ -88,7 +88,7 @@ export type AppAction =
   | { type: "SET_SEARCH"; query: string }
   | { type: "SET_LOG_FILTERS"; room: string; filterType: LogType | "all" }
   | { type: "TOGGLE_EMERGENCY" }
-  | { type: "RESOLVE_EMERGENCY" }
+  | { type: "RESOLVE_EMERGENCY"; note?: string }
   | { type: "UPDATE_SETTINGS"; settings: Partial<AppSettings> }
   | { type: "CLEAR_STORAGE" }
   | { type: "RESET_TO_DEFAULTS" }

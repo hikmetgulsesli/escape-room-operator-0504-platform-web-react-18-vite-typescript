@@ -13,7 +13,7 @@ import type { AppScreen } from "../types/domain";
 interface AcilDurumPaneliProps {
   active: boolean;
   startTime: string | null;
-  onResolve: () => void;
+  onResolve: (note: string) => void;
   onNavigate: (screen: AppScreen) => void;
 }
 
@@ -127,7 +127,7 @@ export function AcilDurumPaneli(props: AcilDurumPaneliProps) {
       </div>
       {/* Recovery Button */}
       <button
-        onClick={() => { if (safetyConfirmed) onResolve(); }}
+        onClick={() => { if (safetyConfirmed) onResolve(note); }}
         className="w-full md:w-auto px-8 py-3 rounded bg-surface-variant text-on-surface-variant font-headline-md tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-colors border border-outline flex items-center justify-center gap-2"
         disabled={!safetyConfirmed}
       >

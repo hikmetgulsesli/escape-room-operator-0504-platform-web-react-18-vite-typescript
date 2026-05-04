@@ -25,16 +25,17 @@ export default function App() {
   const selectedRoom = getSelectedRoom();
 
   const handleNavigate = (screen: typeof state.currentScreen) => {
+    if (screen === "analytics" || screen === "support") return;
     dispatch({ type: "SET_SCREEN", screen });
   };
 
-  const handleExport = (format: "csv" | "json") => {
+  const handleExport = (_format: "csv" | "json") => {
     const data = exportState(state);
-    const blob = new Blob([data], { type: format === "json" ? "application/json" : "text/csv" });
+    const blob = new Blob([data], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `escape-room-backup.${format}`;
+    a.download = `escape-room-backup.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -112,7 +113,7 @@ export default function App() {
       <AcilDurumPaneli
         active={state.emergencyActive}
         startTime={state.emergencyStartTime}
-        onResolve={() => dispatch({ type: "RESOLVE_EMERGENCY" })}
+        onResolve={(note) => dispatch({ type: "RESOLVE_EMERGENCY", note })}
         onNavigate={handleNavigate}
       />
     </div>

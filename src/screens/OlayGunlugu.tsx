@@ -102,7 +102,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
             <button onClick={() => { onNavigate("dashboard"); setMobileMenuOpen(false); }} className="mt-8 w-full py-3 bg-primary text-on-primary rounded font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">YENİ OTURUM</button>
             <div className="mt-6 flex flex-col gap-2 w-full pt-4 border-t border-slate-800">
               <button onClick={() => { onNavigate("support"); setMobileMenuOpen(false); }} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">help</span>Destek</button>
-              <button className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span>Çıkış</button>
+              <button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span>Çıkış</button>
             </div>
           </nav>
         </div>
@@ -127,7 +127,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
         <button onClick={() => onNavigate("dashboard")} className="mt-8 w-full py-3 bg-primary text-on-primary rounded font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">YENİ OTURUM</button>
         <div className="mt-6 flex flex-col gap-2 w-full pt-4 border-t border-slate-800">
           <button onClick={() => onNavigate("support")} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">help</span><span>Destek</span></button>
-          <button className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span><span>Çıkış</span></button>
+          <button onClick={() => {}} className="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 font-inter text-xs font-medium uppercase tracking-widest transition-colors text-left"><span className="material-symbols-outlined text-[18px]">logout</span><span>Çıkış</span></button>
         </div>
       </nav>
       {/* Main Application Canvas */}
@@ -277,13 +277,13 @@ export function OlayGunlugu(props: OlayGunluguProps) {
             {/* Pagination Footer */}
             <div className="px-6 py-3 bg-surface-container border-t border-outline-variant/50 flex justify-between items-center">
               <div className="font-body-sm text-body-sm text-on-surface-variant">
-                Toplam {logs.length} kayıttan 1-{Math.min(50, logs.length)} arası gösteriliyor.
+                Toplam {logs.length} kayıt gösteriliyor.
               </div>
               <div className="flex items-center gap-2">
                 <button className="p-1 rounded hover:bg-surface-variant text-on-surface-variant disabled:opacity-50" disabled={true}>
                   <span className="material-symbols-outlined">chevron_left</span>
                 </button>
-                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa 1 / {totalPages}</span>
+                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa 1 / 1</span>
                 <button className="p-1 rounded hover:bg-surface-variant text-on-surface" disabled={totalPages <= 1}>
                   <span className="material-symbols-outlined">chevron_right</span>
                 </button>
