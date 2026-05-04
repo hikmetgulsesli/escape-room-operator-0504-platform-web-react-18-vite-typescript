@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kaçış Odası Detay &amp; Kontrol Ekranı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#002e6a",
+                        "on-surface": "#e1e2ec",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0b0e15",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-background": "#e1e2ec",
+                        "tertiary-container": "#df7412",
+                        "background": "#10131a",
+                        "outline": "#8c909f",
+                        "inverse-surface": "#e1e2ec",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary-fixed": "#001a42",
+                        "surface-variant": "#32353c",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-primary-container": "#00285d",
+                        "secondary": "#bcc7de",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#311400",
+                        "on-secondary-container": "#aeb9d0",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2e3038",
+                        "on-error": "#690005",
+                        "secondary-container": "#3e495d",
+                        "on-tertiary": "#502400",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "inverse-primary": "#005ac2",
+                        "on-secondary": "#263143",
+                        "outline-variant": "#424754",
+                        "surface-dim": "#10131a",
+                        "secondary-fixed": "#d8e3fb",
+                        "primary": "#adc6ff",
+                        "on-surface-variant": "#c2c6d6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary-container": "#4d8eff",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "surface-bright": "#363941",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed": "#ffdcc6",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-high": "#272a31",
+                        "surface-container-low": "#191b23",
+                        "surface-container": "#1d2027",
+                        "on-tertiary-container": "#461f00",
+                        "surface-container-highest": "#32353c",
+                        "surface": "#10131a",
+                        "secondary-fixed-dim": "#bcc7de"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-timer": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-base": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "mono-data": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-timer": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-base": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "mono-data": ["13px", { "lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid #334155;
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-base min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-slate-900/80 backdrop-blur-md text-blue-500 dark:text-blue-400 font-inter tracking-tight text-sm fixed top-0 w-full z-50 flex justify-between items-center px-6 h-14 border-b border-slate-700/50">
+<div class="flex items-center gap-4">
+<span class="text-lg font-black tracking-tighter text-blue-500 uppercase">COMMAND CENTER</span>
+<div class="flex items-center bg-surface-container rounded-lg px-3 py-1.5 border border-outline-variant focus-within:border-primary focus-within:shadow-[0_0_0_1px_#adc6ff]">
+<span class="material-symbols-outlined text-outline-variant mr-2" style="font-size: 18px;">search</span>
+<input class="bg-transparent border-none outline-none text-on-surface text-body-sm w-48 placeholder-outline-variant p-0 focus:ring-0" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-error text-on-error font-label-caps px-4 py-2 rounded flex items-center gap-2 hover:bg-error/90 transition-colors animate-pulse">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 18px;">warning</span>
+                EMERGENCY STOP
+            </button>
+<div class="flex items-center gap-4 border-l border-slate-700/50 pl-4">
+<button class="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-blue-400 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Operator Profile" class="w-8 h-8 rounded-full border border-slate-700" data-alt="A small, circular avatar image showing a professional male operator with a headset, looking focused in a dimly lit, high-tech command center environment with blue glowing screens in the background. The aesthetic is modern, serious, and cinematic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIfuaj8PBeVuOPTdoM9SI74io__O3CY8pe3fvZEuuwg1qxMueWAarhyUehDWWmfHcLQ66rDjEnxlN-uY4sGibVD8GKI2A6edtwH9_alSxv-vZR_3GbSG1hEXxeSB37m_uufw-9Q5tDyl4-VpDLw8-tMk4x2RwvMIWHW3mpy3QVKGxF_5LbsXfUWJ_x6moZUBVhHchGRt3rThwtHcJogItYK6RQ9Mpq-tKvji149ib3HaZPi2-W5ao-7BtFYBdngkFkavEPArOcHMI"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-14">
+<!-- SideNavBar -->
+<nav class="bg-slate-900/90 backdrop-blur-lg text-blue-500 dark:text-blue-400 font-inter text-xs font-medium uppercase tracking-widest fixed left-0 top-0 h-full w-64 border-r border-slate-800 shadow-2xl flex flex-col pt-16 pb-6 px-4 z-40 transition-all duration-200 ease-in-out hidden md:flex">
+<div class="mb-8 px-2 flex items-center gap-3">
+<img alt="Command Station 01" class="w-10 h-10 rounded-full border border-slate-700" data-alt="A stylized, glowing neon blue icon representing a futuristic command station or server node against a dark, metallic background, conveying a high-tech cybersecurity theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE8riB-G4ZNq0vO1HBaaGKEv6zdbjsxRgCfcv6dYgOB2YJTp2ZakeGwO30Vr4Zvg0zWoHAvC4wX8wV0xsoXH8WKWAXOnXGL_kbRR0QIFcRSm3r3BAcV0tIcoIXjq7i6IyaJXvGwBOjbJqd7-VMW297hdhoVPPVRh8vAg8NL9hJFills1F5Keb3KHaDkY3OfNwrSQ1rg1l-pGfNLRVAH7RcDeUihpHlfPd-tlaUOn33j1lCD4sKDBuRbLFz8W7LTl1wX2auast81vE"/>
+<div>
+<h2 class="text-slate-100 font-bold text-sm tracking-normal capitalize">Alpha Sector</h2>
+<p class="text-slate-500 text-[10px] tracking-wider">Lead Operator</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-blue-600/10 text-blue-400 border-r-2 border-blue-500 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+                        Operations
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+                        Activity Log
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                        Analytics
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+                        System Settings
+                    </a>
+</li>
+</ul>
+<button class="mt-auto mb-6 bg-primary text-on-primary font-bold py-3 rounded w-full hover:bg-primary/90 transition-colors">
+                NEW SESSION
+            </button>
+<ul class="flex flex-col gap-2 border-t border-slate-800 pt-4">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">help</span>
+                        Support
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/40 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
+<!-- Left Column: Operations -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Header / Timer -->
+<div class="glass-panel rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">Oda 3: Laboratuvar</h1>
+<div class="flex gap-2">
+<span class="bg-error/10 text-error border border-error/30 font-label-caps text-label-caps px-2 py-1 rounded">LIVE</span>
+<span class="bg-primary/10 text-primary border border-primary/30 font-label-caps text-label-caps px-2 py-1 rounded">ZORLUK: YÜKSEK</span>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<div class="font-display-timer text-display-timer text-primary tracking-tight">45:12</div>
+<div class="flex gap-3 mt-2">
+<button class="bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-variant px-4 py-2 rounded flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">pause</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-bold hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+                                DEVAM
+                            </button>
+<button class="bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-variant px-4 py-2 rounded flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Surveillance -->
+<div class="glass-panel rounded-xl overflow-hidden relative aspect-video border border-slate-700 group">
+<img alt="Surveillance Feed" class="w-full h-full object-cover opacity-70" data-alt="A simulated CCTV security camera feed looking into a dimly lit, high-tech science laboratory. The room has stainless steel tables, glowing blue fluid in beakers, and industrial piping. The image has a slight static effect and low saturation to look like authentic surveillance footage in a dark mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBobiiGoWuluRrA9_VTRr-8irqanmwO5ve8IEy6jHqRwMdO-4VLzsxJx4dFIElnP9uUZRMxBE7jFzfdunzFJiRqJsRg51cKdADQm37cjG5FeDqurGWVo8ucmu90bymcOTnKeSpqBf-OjAUMqj5Yeih3Hu2GimVCMwzynEZuMwiHVoL7vEe41sAGbg7GdhwwdToKur7Ndf_cBhKNIWiBAFLUJTk1J5OMKClAOoc4F_5gVDHGrB6Hm_1ALNvzGAUbuT6iPDUsIGJ12Lc"/>
+<div class="absolute top-4 left-4 bg-background/80 backdrop-blur-sm border border-slate-700 px-3 py-1 rounded">
+<span class="font-label-caps text-label-caps text-primary tracking-widest">CAM 01 - MAIN LAB</span>
+</div>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700"><span class="material-symbols-outlined" style="font-size: 18px;">fullscreen</span></button>
+<button class="bg-background/80 text-on-surface p-2 rounded hover:bg-surface-variant border border-slate-700"><span class="material-symbols-outlined" style="font-size: 18px;">mic</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Clue System -->
+<div class="glass-panel rounded-xl p-5 flex flex-col">
+<h3 class="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+                            İpucu Gönderimi
+                        </h3>
+<div class="space-y-3 mb-4">
+<button class="w-full text-left bg-surface-container hover:bg-surface-variant border border-outline-variant p-3 rounded text-body-sm text-on-surface transition-colors flex justify-between items-center">
+                                "Kasadaki sembollere dikkat edin."
+                                <span class="material-symbols-outlined text-outline-variant" style="font-size: 16px;">send</span>
+</button>
+<button class="w-full text-left bg-surface-container hover:bg-surface-variant border border-outline-variant p-3 rounded text-body-sm text-on-surface transition-colors flex justify-between items-center">
+                                "Ultraviyole ışığı kullanma zamanı."
+                                <span class="material-symbols-outlined text-outline-variant" style="font-size: 16px;">send</span>
+</button>
+</div>
+<div class="mt-auto relative">
+<textarea class="w-full bg-surface-dim border border-outline-variant rounded-lg p-3 text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none h-24 placeholder-outline-variant" placeholder="Özel mesaj yazın..."></textarea>
+<button class="absolute bottom-3 right-3 bg-primary text-on-primary p-1.5 rounded hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">send</span>
+</button>
+</div>
+</div>
+<!-- Puzzle Checklist -->
+<div class="glass-panel rounded-xl p-5 flex flex-col">
+<h3 class="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">check_box</span>
+                            Bulmaca Durumu
+                        </h3>
+<div class="space-y-1 flex-1 overflow-y-auto pr-2">
+<label class="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body-base text-body-base text-outline line-through group-hover:text-outline-variant">Giriş Kapısı Şifresi</span>
+</label>
+<label class="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body-base text-body-base text-outline line-through group-hover:text-outline-variant">Lazer Ağı Devre Dışı</span>
+</label>
+<label class="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body-base text-body-base text-on-surface">Kimyasal Karışım</span>
+</label>
+<label class="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body-base text-body-base text-on-surface">Gizli Kasa Kilidi</span>
+</label>
+<label class="flex items-center gap-3 p-2 hover:bg-surface-container rounded cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body-base text-body-base text-on-surface">Ana Bilgisayar Erişimi</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Panels -->
+<div class="w-full lg:w-80 flex flex-col gap-6">
+<!-- Player List -->
+<div class="glass-panel rounded-xl p-5">
+<div class="flex justify-between items-center border-b border-slate-700 pb-3 mb-4">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">group</span>
+                            Oyuncular
+                        </h3>
+<span class="bg-surface-container text-on-surface font-mono-data text-mono-data px-2 py-1 rounded">4/6</span>
+</div>
+<ul class="space-y-2 mb-4">
+<li class="flex justify-between items-center bg-surface-container/50 p-2 rounded border border-transparent hover:border-slate-700">
+<span class="font-body-sm text-body-sm text-on-surface">Ahmet Y.</span>
+<button class="text-error hover:text-error-container transition-colors"><span class="material-symbols-outlined" style="font-size: 16px;">close</span></button>
+</li>
+<li class="flex justify-between items-center bg-surface-container/50 p-2 rounded border border-transparent hover:border-slate-700">
+<span class="font-body-sm text-body-sm text-on-surface">Selin K.</span>
+<button class="text-error hover:text-error-container transition-colors"><span class="material-symbols-outlined" style="font-size: 16px;">close</span></button>
+</li>
+<li class="flex justify-between items-center bg-surface-container/50 p-2 rounded border border-transparent hover:border-slate-700">
+<span class="font-body-sm text-body-sm text-on-surface">Can B.</span>
+<button class="text-error hover:text-error-container transition-colors"><span class="material-symbols-outlined" style="font-size: 16px;">close</span></button>
+</li>
+<li class="flex justify-between items-center bg-surface-container/50 p-2 rounded border border-transparent hover:border-slate-700">
+<span class="font-body-sm text-body-sm text-on-surface">Elif D.</span>
+<button class="text-error hover:text-error-container transition-colors"><span class="material-symbols-outlined" style="font-size: 16px;">close</span></button>
+</li>
+</ul>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-dim border border-outline-variant rounded p-2 text-body-sm text-on-surface focus:border-primary outline-none" placeholder="Yeni oyuncu..." type="text"/>
+<button class="bg-surface-container border border-outline-variant text-on-surface p-2 rounded hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+</button>
+</div>
+</div>
+<!-- Event Log -->
+<div class="glass-panel rounded-xl p-5 flex-1 flex flex-col">
+<h3 class="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">history</span>
+                        Olay Günlüğü
+                    </h3>
+<div class="flex-1 overflow-y-auto space-y-4 pr-2 font-mono-data text-body-sm">
+<div class="flex gap-3">
+<span class="text-outline-variant w-12 shrink-0">14:10</span>
+<div class="text-on-surface border-l-2 border-primary pl-2">
+                                İpucu gönderildi: "Kasadaki semboller..."
+                            </div>
+</div>
+<div class="flex gap-3">
+<span class="text-outline-variant w-12 shrink-0">14:05</span>
+<div class="text-secondary border-l-2 border-secondary pl-2">
+                                Bulmaca çözüldü: Lazer Ağı
+                            </div>
+</div>
+<div class="flex gap-3">
+<span class="text-outline-variant w-12 shrink-0">13:58</span>
+<div class="text-error border-l-2 border-error pl-2">
+                                Geçersiz şifre denemesi (Kasa)
+                            </div>
+</div>
+<div class="flex gap-3">
+<span class="text-outline-variant w-12 shrink-0">13:45</span>
+<div class="text-secondary border-l-2 border-secondary pl-2">
+                                Bulmaca çözüldü: Giriş Kapısı
+                            </div>
+</div>
+<div class="flex gap-3">
+<span class="text-outline-variant w-12 shrink-0">13:30</span>
+<div class="text-primary border-l-2 border-primary pl-2">
+                                Oyun başlatıldı.
+                            </div>
+</div>
+</div>
+</div>
+<!-- Inventory / Objects -->
+<div class="glass-panel rounded-xl p-5">
+<h3 class="font-headline-md text-headline-md border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container">inventory_2</span>
+                        Oda Envanteri
+                    </h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container border border-outline-variant rounded p-3 flex flex-col items-center justify-center text-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-outline-variant">key</span>
+<span class="font-label-caps text-label-caps text-on-surface">MAVİ ANAHTAR</span>
+</div>
+<div class="bg-surface-container border border-primary rounded p-3 flex flex-col items-center justify-center text-center gap-2 shadow-[0_0_10px_rgba(77,142,255,0.1)]">
+<span class="material-symbols-outlined text-primary">flashlight_on</span>
+<span class="font-label-caps text-label-caps text-primary">UV FENER</span>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded p-3 flex flex-col items-center justify-center text-center gap-2">
+<span class="material-symbols-outlined text-on-surface">science</span>
+<span class="font-label-caps text-label-caps text-on-surface">BEHER 1</span>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded p-3 flex flex-col items-center justify-center text-center gap-2">
+<span class="material-symbols-outlined text-on-surface">sd_card</span>
+<span class="font-label-caps text-label-caps text-on-surface">VERİ DİSKİ</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
