@@ -1,0 +1,1285 @@
+[
+  {
+    "screenId": "6a5326b98b2c42948a52c54d25b066c2",
+    "screenTitle": "Acil Durum Paneli",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "Tüm Sirenleri Sustur BEKLEMEDE",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "Tüm Kilitleri Aç TAMAMLANDI",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "Güvenli Duruma Dön",
+        "line": 198
+      },
+      {
+        "type": "input",
+        "label": "Acil durum nedenini buraya giriniz... Olay günlüğüne otomatik kaydedilecektir.",
+        "inputType": "textarea",
+        "placeholder": "Acil durum nedenini buraya giriniz... Olay günlüğüne otomatik kaydedilecektir.",
+        "line": 185
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 192
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 129
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "Tüm Sirenleri Sustur BEKLEMEDE",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "Tüm Kilitleri Aç TAMAMLANDI",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "Güvenli Duruma Dön",
+        "line": 198
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Acil durum nedenini buraya giriniz... Olay günlüğüne otomatik kaydedilecektir.",
+        "inputType": "textarea",
+        "placeholder": "Acil durum nedenini buraya giriniz... Olay günlüğüne otomatik kaydedilecektir.",
+        "line": 185
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 192
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 7,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "4b2ac2d5e6c44c388391e8f4abfb3fde",
+    "screenTitle": "Sistem Ayarları",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 112
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 116
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 120
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 124
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 128
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 134
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 158
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 162
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "Değişiklikleri Kaydet",
+        "line": 244
+      },
+      {
+        "type": "button",
+        "label": "LocalStorage Temizle",
+        "line": 266
+      },
+      {
+        "type": "button",
+        "label": "Veriyi Dışa Aktar (Export)",
+        "line": 273
+      },
+      {
+        "type": "button",
+        "label": "Yedekten Yükle (Import)",
+        "line": 277
+      },
+      {
+        "type": "button",
+        "label": "FABRİKA AYARLARINA DÖN",
+        "line": 292
+      },
+      {
+        "type": "input",
+        "label": "Sistemde Ara...",
+        "inputType": "text",
+        "placeholder": "Sistemde Ara...",
+        "line": 155
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 199
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 214
+      },
+      {
+        "type": "input",
+        "label": "text",
+        "inputType": "text",
+        "line": 229
+      },
+      {
+        "type": "input",
+        "label": "text",
+        "inputType": "text",
+        "line": 233
+      },
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 239
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 112
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 116
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 120
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 124
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 128
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 141
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 134
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 158
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 162
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "Değişiklikleri Kaydet",
+        "line": 244
+      },
+      {
+        "type": "button",
+        "label": "LocalStorage Temizle",
+        "line": 266
+      },
+      {
+        "type": "button",
+        "label": "Veriyi Dışa Aktar (Export)",
+        "line": 273
+      },
+      {
+        "type": "button",
+        "label": "Yedekten Yükle (Import)",
+        "line": 277
+      },
+      {
+        "type": "button",
+        "label": "FABRİKA AYARLARINA DÖN",
+        "line": 292
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Sistemde Ara...",
+        "inputType": "text",
+        "placeholder": "Sistemde Ara...",
+        "line": 155
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 199
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 214
+      },
+      {
+        "type": "input",
+        "label": "text",
+        "inputType": "text",
+        "line": 229
+      },
+      {
+        "type": "input",
+        "label": "text",
+        "inputType": "text",
+        "line": 233
+      },
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 239
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 22,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "c68df0ba57a749ee8d33bca5f1c7ae94",
+    "screenTitle": "Olay Günlüğü",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 160
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 165
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 192
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "EXPORT CSV",
+        "line": 214
+      },
+      {
+        "type": "button",
+        "label": "EXPORT JSON",
+        "line": 218
+      },
+      {
+        "type": "button",
+        "label": "Yenile",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "chevron_left",
+        "line": 385
+      },
+      {
+        "type": "button",
+        "label": "chevron_right",
+        "line": 389
+      },
+      {
+        "type": "input",
+        "label": "Global Search...",
+        "inputType": "text",
+        "placeholder": "Global Search...",
+        "line": 189
+      },
+      {
+        "type": "input",
+        "label": "Olay, detay veya referans no ara...",
+        "inputType": "text",
+        "placeholder": "Olay, detay veya referans no ara...",
+        "line": 229
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 234
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 245
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 160
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 173
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 165
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 192
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "EXPORT CSV",
+        "line": 214
+      },
+      {
+        "type": "button",
+        "label": "EXPORT JSON",
+        "line": 218
+      },
+      {
+        "type": "button",
+        "label": "Yenile",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "chevron_left",
+        "line": 385
+      },
+      {
+        "type": "button",
+        "label": "chevron_right",
+        "line": 389
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Global Search...",
+        "inputType": "text",
+        "placeholder": "Global Search...",
+        "line": 189
+      },
+      {
+        "type": "input",
+        "label": "Olay, detay veya referans no ara...",
+        "inputType": "text",
+        "placeholder": "Olay, detay veya referans no ara...",
+        "line": 229
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 234
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 245
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 20,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "af660ec3c67d4e16bbc14c630831e249",
+    "screenTitle": "Oda Detay Kontrolü",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 167
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 173
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 184
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 190
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 122
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 127
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 130
+      },
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 179
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 213
+      },
+      {
+        "type": "button",
+        "label": "DEVAM",
+        "line": 216
+      },
+      {
+        "type": "button",
+        "label": "restart_alt",
+        "line": 220
+      },
+      {
+        "type": "button",
+        "label": "fullscreen",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "\"Kasadaki sembollere dikkat edin.\"",
+        "line": 245
+      },
+      {
+        "type": "button",
+        "label": "\"Ultraviyole ışığı kullanma zamanı.\"",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "send",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 306
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 310
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 314
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 318
+      },
+      {
+        "type": "button",
+        "label": "add",
+        "line": 323
+      },
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 118
+      },
+      {
+        "type": "input",
+        "label": "Özel mesaj yazın...",
+        "inputType": "textarea",
+        "placeholder": "Özel mesaj yazın...",
+        "line": 255
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 269
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 273
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 277
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 281
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 285
+      },
+      {
+        "type": "input",
+        "label": "Yeni oyuncu...",
+        "inputType": "text",
+        "placeholder": "Yeni oyuncu...",
+        "line": 322
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 167
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 173
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 184
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 190
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 122
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 127
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 130
+      },
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 179
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 213
+      },
+      {
+        "type": "button",
+        "label": "DEVAM",
+        "line": 216
+      },
+      {
+        "type": "button",
+        "label": "restart_alt",
+        "line": 220
+      },
+      {
+        "type": "button",
+        "label": "fullscreen",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "\"Kasadaki sembollere dikkat edin.\"",
+        "line": 245
+      },
+      {
+        "type": "button",
+        "label": "\"Ultraviyole ışığı kullanma zamanı.\"",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "send",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 306
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 310
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 314
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 318
+      },
+      {
+        "type": "button",
+        "label": "add",
+        "line": 323
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 118
+      },
+      {
+        "type": "input",
+        "label": "Özel mesaj yazın...",
+        "inputType": "textarea",
+        "placeholder": "Özel mesaj yazın...",
+        "line": 255
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 269
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 273
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 277
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 281
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 285
+      },
+      {
+        "type": "input",
+        "label": "Yeni oyuncu...",
+        "inputType": "text",
+        "placeholder": "Yeni oyuncu...",
+        "line": 322
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 32,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "fc7cf25933e94856ae410e2b66df4714",
+    "screenTitle": "Ana Operasyon Panosu",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 203
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 208
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 212
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 216
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 220
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 226
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 230
+      },
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 252
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "TÜMÜ (8)",
+        "line": 267
+      },
+      {
+        "type": "button",
+        "label": "AKTİF (3)",
+        "line": 268
+      },
+      {
+        "type": "button",
+        "label": "BOŞ (4)",
+        "line": 269
+      },
+      {
+        "type": "button",
+        "label": "BAKIM (1)",
+        "line": 270
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 294
+      },
+      {
+        "type": "button",
+        "label": "lightbulb",
+        "line": 295
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 307
+      },
+      {
+        "type": "button",
+        "label": "MÜDAHALE ET",
+        "line": 312
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 332
+      },
+      {
+        "type": "button",
+        "label": "lightbulb",
+        "line": 333
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 344
+      },
+      {
+        "type": "button",
+        "label": "MÜDAHALE ET",
+        "line": 349
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 373
+      },
+      {
+        "type": "button",
+        "label": "OTURUM BAŞLAT",
+        "line": 378
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 406
+      },
+      {
+        "type": "input",
+        "label": "Oda Ara...",
+        "inputType": "text",
+        "placeholder": "Oda Ara...",
+        "line": 245
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 203
+      },
+      {
+        "type": "link",
+        "label": "Operations",
+        "href": "#",
+        "line": 208
+      },
+      {
+        "type": "link",
+        "label": "Activity Log",
+        "href": "#",
+        "line": 212
+      },
+      {
+        "type": "link",
+        "label": "analytics",
+        "href": "#",
+        "line": 216
+      },
+      {
+        "type": "link",
+        "label": "System Settings",
+        "href": "#",
+        "line": 220
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "#",
+        "line": 226
+      },
+      {
+        "type": "link",
+        "label": "logout",
+        "href": "#",
+        "line": 230
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "NEW SESSION",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 252
+      },
+      {
+        "type": "button",
+        "label": "EMERGENCY STOP",
+        "line": 256
+      },
+      {
+        "type": "button",
+        "label": "TÜMÜ (8)",
+        "line": 267
+      },
+      {
+        "type": "button",
+        "label": "AKTİF (3)",
+        "line": 268
+      },
+      {
+        "type": "button",
+        "label": "BOŞ (4)",
+        "line": 269
+      },
+      {
+        "type": "button",
+        "label": "BAKIM (1)",
+        "line": 270
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 294
+      },
+      {
+        "type": "button",
+        "label": "lightbulb",
+        "line": 295
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 307
+      },
+      {
+        "type": "button",
+        "label": "MÜDAHALE ET",
+        "line": 312
+      },
+      {
+        "type": "button",
+        "label": "mic",
+        "line": 332
+      },
+      {
+        "type": "button",
+        "label": "lightbulb",
+        "line": 333
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 344
+      },
+      {
+        "type": "button",
+        "label": "MÜDAHALE ET",
+        "line": 349
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 373
+      },
+      {
+        "type": "button",
+        "label": "OTURUM BAŞLAT",
+        "line": 378
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 406
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Oda Ara...",
+        "inputType": "text",
+        "placeholder": "Oda Ara...",
+        "line": 245
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 27,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]
