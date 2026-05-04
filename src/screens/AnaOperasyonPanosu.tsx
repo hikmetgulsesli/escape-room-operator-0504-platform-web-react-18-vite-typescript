@@ -45,7 +45,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [micActive, setMicActive] = useState(false);
+  const [activeMicRoomId, setActiveMicRoomId] = useState<string | null>(null);
 
   const allCount = rooms.length;
   const activeCount = rooms.filter((r) => r.status === "in-game" || r.status === "paused").length;
@@ -304,7 +304,7 @@ export function AnaOperasyonPanosu(props: AnaOperasyonPanosuProps) {
                     </span>
                   </div>
                   <div className="absolute bottom-sm left-sm right-sm flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={(e) => { e.stopPropagation(); setMicActive(!micActive); }} className={`bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors ${micActive ? "bg-primary/20 border-primary" : ""}`} aria-label="Mikrofon"><span className="material-symbols-outlined text-[16px]">mic</span></button>
+                    <button onClick={(e) => { e.stopPropagation(); setActiveMicRoomId(activeMicRoomId === room.id ? null : room.id); }} className={`bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors ${activeMicRoomId === room.id ? "bg-primary/20 border-primary" : ""}`} aria-label="Mikrofon"><span className="material-symbols-outlined text-[16px]">mic</span></button>
                     <button onClick={(e) => { e.stopPropagation(); onSelectRoom(room.id); }} className="bg-black/80 hover:bg-black text-white p-xs rounded border border-[#334155] transition-colors" aria-label="İpucu"><span className="material-symbols-outlined text-[16px]">lightbulb</span></button>
                   </div>
                 </div>

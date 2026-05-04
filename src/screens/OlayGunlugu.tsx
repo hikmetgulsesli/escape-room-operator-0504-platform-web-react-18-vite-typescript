@@ -43,6 +43,7 @@ export function OlayGunlugu(props: OlayGunluguProps) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const typeOptions: { value: LogType | "all"; label: string }[] = [
     { value: "all", label: "Tüm Olay Tipleri" },
@@ -324,11 +325,11 @@ export function OlayGunlugu(props: OlayGunluguProps) {
                 Toplam {logs.length} kayıt gösteriliyor.
               </div>
               <div className="flex items-center gap-2">
-                <button className="p-1 rounded hover:bg-surface-variant text-on-surface-variant disabled:opacity-50" disabled={true}>
+                <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} className="p-1 rounded hover:bg-surface-variant text-on-surface-variant disabled:opacity-50" disabled={currentPage <= 1}>
                   <span className="material-symbols-outlined">chevron_left</span>
                 </button>
-                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa 1 / {totalPages}</span>
-                <button className="p-1 rounded hover:bg-surface-variant text-on-surface" disabled={totalPages <= 1}>
+                <span className="font-mono-data text-mono-data text-on-surface px-2">Sayfa {currentPage} / {totalPages}</span>
+                <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} className="p-1 rounded hover:bg-surface-variant text-on-surface disabled:opacity-50" disabled={currentPage >= totalPages}>
                   <span className="material-symbols-outlined">chevron_right</span>
                 </button>
               </div>
